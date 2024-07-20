@@ -58,25 +58,32 @@ int ft_get_file_size(char *map)
 void ft_check_variables(char **file, t_parse *parse, t_game *cub3d)
 {
 	char **test;
+	(void)cub3d;
+
 	parse->c = 0;
 	parse->j = 0;
-	printf("%i\n",parse->i);
 	while (parse->c < parse->i)
 	{
 		test = ft_split(file[parse->c], ' ');
-		printf("a\n");
 		while (test[parse->j])
 			parse->j++;
-		if (parse->j >= 3)
-			return ;
+		if (parse->j != 2)
+		{			
+			parse->c++;
+			continue;
+		}
 		if (!ft_strncmp("NO", test[0], ft_strlen(test[0])))
-			init_tex(cub3d, &cub3d->tex_north, test[1]);
+			printf("%s\n",test[1]);
 		if (!ft_strncmp("SO", test[0], ft_strlen(test[0])))
-			init_tex(cub3d, &cub3d->tex_south, test[1]);
+			printf("%s\n",test[1]);
 		if (!ft_strncmp("WE", test[0], ft_strlen(test[0])))
-			init_tex(cub3d, &cub3d->tex_west, test[1]);
+			printf("%s\n",test[1]);
 		if (!ft_strncmp("EA", test[0], ft_strlen(test[0])))
-			init_tex(cub3d, &cub3d->tex_east, test[1]);
+			printf("%s\n",test[1]);
+		if (!ft_strncmp("F", test[0], ft_strlen(test[0])))
+			printf("%s\n",test[1]);
+		if (!ft_strncmp("C", test[0], ft_strlen(test[0])))
+			printf("%s\n",test[1]);
 		parse->j = 0;
 		parse->c++;
 	}
