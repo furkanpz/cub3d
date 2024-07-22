@@ -106,6 +106,16 @@ struct s_draw_hlpr
 	int		index;
 };
 
+typedef struct s_get_file{
+	char *no;
+	char *so;
+	char *we;
+	char *ea;
+	char **f;
+	char **c;
+
+}				t_get_file;
+
 //---------------------- Debug --------------------------
 
 void	init_debug(t_game *cub3d);

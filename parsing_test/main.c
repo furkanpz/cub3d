@@ -55,7 +55,7 @@ int ft_get_file_size(char *map)
 }
 
 
-void ft_check_variables(char **file, t_parse *parse, t_game *cub3d)
+void ft_check_variables(char **file, t_parse *parse, t_game *cub3d, t_get_file *files)
 {
 	char **test;
 	(void)cub3d;
@@ -73,17 +73,17 @@ void ft_check_variables(char **file, t_parse *parse, t_game *cub3d)
 			continue;
 		}
 		if (!ft_strncmp("NO", test[0], ft_strlen(test[0])))
-			printf("%s\n",test[1]);
+			files->no = test[1];
 		if (!ft_strncmp("SO", test[0], ft_strlen(test[0])))
-			printf("%s\n",test[1]);
+			files->so = test[1];
 		if (!ft_strncmp("WE", test[0], ft_strlen(test[0])))
-			printf("%s\n",test[1]);
+			files->we = test[1];
 		if (!ft_strncmp("EA", test[0], ft_strlen(test[0])))
-			printf("%s\n",test[1]);
+			files->ea = test[1];
 		if (!ft_strncmp("F", test[0], ft_strlen(test[0])))
-			printf("%s\n",test[1]);
+			files->f = ft_split(test[1],',');
 		if (!ft_strncmp("C", test[0], ft_strlen(test[0])))
-			printf("%s\n",test[1]);
+			files->c = ft_split(test[1],',');
 		parse->j = 0;
 		parse->c++;
 	}
