@@ -81,6 +81,8 @@ void ft_check_variables(char **file, t_parse *parse, t_game *cub3d, t_get_file *
 	files->count = 0;
 	while (parse->c < parse->i)
 	{
+		if (files->count == 6)
+			break;
 		test = ft_split(file[parse->c], ' ');
 		if (test[0] && (ft_strchr(test[0], '1') || ft_strchr(test[0], '0')))
 			break ;
@@ -129,7 +131,17 @@ void ft_check_variables(char **file, t_parse *parse, t_game *cub3d, t_get_file *
 		printf("ERROR!\n");
 		return ;
 	}
-	print_file(files);
+	test = malloc(sizeof(char *) * ((parse->i - parse->c) + 1));
+	if (!test)
+		return ;
+	parse->j = 0;
+	while (parse->c < parse->i)
+	{
+		test[parse->j] = file[parse->c];
+		parse->c++;
+		parse->j++;
+	}
+	test[parse->j] = NULL;
 }
 
 void init_file(t_get_file *file)
