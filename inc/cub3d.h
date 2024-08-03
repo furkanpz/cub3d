@@ -179,7 +179,7 @@ typedef struct s_parse{
 }			t_parse;
 
 void ft_read_cub(char *map, t_game *cub3d);
-void ft_check_variables(char **file, t_parse *parse, t_game *cub3d, t_get_file *files);
+int ft_check_variables(char **file, t_parse *parse, t_get_file *files);
 int ft_get_file_size(char *map);
 void get_map_size(t_game *cub3d, char *map);
 void ft_error_msg(char *av, int type);
