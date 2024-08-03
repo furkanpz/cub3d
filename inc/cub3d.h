@@ -113,6 +113,7 @@ typedef struct s_get_file{
 	char *ea;
 	char **f;
 	char **c;
+	char **map;
 	int count;
 
 }				t_get_file;
@@ -179,7 +180,7 @@ typedef struct s_parse{
 }			t_parse;
 
 void ft_read_cub(char *map, t_game *cub3d);
-int ft_check_variables(char **file, t_parse *parse, t_get_file *files);
+int ft_check_variables(char **file, char **file2, t_parse *parse, t_get_file *files);
 int ft_get_file_size(char *map);
 void get_map_size(t_game *cub3d, char *map);
 void ft_error_msg(char *av, int type);

@@ -154,11 +154,29 @@ int ft_check_var_if_2(char **test, t_get_file *files)
 		return (1);
 	return (0);
 }
+char **ft_set_temp_map_2(t_parse parse, char *map)
+{
+	char **tmp;
+	char *temp;
 
-int ft_check_variables(char **file, t_parse *parse, t_get_file *files)
+	parse.c = 0;
+	parse.i = ft_get_file_size(map);
+	parse.fd = open(map, O_RDONLY, 0644);
+	tmp = malloc(sizeof(char *) * (parse.i + 1));
+	while (parse.c < parse.i)
+	{
+		temp = get_next_line(parse.fd);
+		free(temp);
+		parse.c++;
+	}
+	tmp[parse.c] = NULL;
+	close(parse.fd);
+	return (tmp);
+}
+
+int ft_check_variables(char **file, char **file2, t_parse *parse, t_get_file *files)
 {
 	char **test;
-	char **ret;
 
 	ft_check_var_init(parse, files);
 	while (parse->c < parse->i)
@@ -177,8 +195,8 @@ int ft_check_variables(char **file, t_parse *parse, t_get_file *files)
 	}
 	if (files->count != 6)
 		return (-1);
-	ret = ft_check_val_ret(file, parse);
-	if (!ret)
+	files->map = ft_check_val_ret(file2, parse);
+	if (!files->map)
 		return (-1);
 	return (1);
 }
@@ -192,33 +210,123 @@ void init_file(t_get_file *file)
 	file->no = NULL;
 	file->ea = NULL;
 }
+int ft_check_fd(t_get_file *file)
+{
+	int fd;
+
+	fd = open(file->no, O_RDONLY, 0644);
+	if (fd == -1)
+		return (fd);
+	fd = open(file->so, O_RDONLY, 0644);
+	if (fd == -1)
+		return (fd);
+	fd = open(file->we, O_RDONLY, 0644);
+	if (fd == -1)
+		return (fd);
+	fd = open(file->ea, O_RDONLY, 0644);
+	if (fd == -1)
+		return (fd);
+	return (1);
+}
+int ft_check_rgb(t_get_file *file)
+{
+	int i;
+
+	i = 0;
+	while (file->c[i])
+	{
+		if (ft_atoi(file->c[i]) > 255 || ft_atoi(file->c[i]) < 0)
+			return (-1);
+		i++;
+	}
+	if (i != 3)
+		return (-1);
+	i = 0;
+	while (file->f[i])
+	{
+		if (ft_atoi(file->f[i]) > 255 || ft_atoi(file->f[i]) < 0)
+			return (-1);
+		i++;
+	}
+	if (i != 3)
+		return (-1);
+	return (0);
+}
+
+int ft_check_map(t_get_file *file)
+{
+	t_parse p;
+
+	p.i = 0;
+	p.c = 0;
+	while (file->map[p.i])
+	{
+		while (file->map[p.i][p.c])
+		{
+			if (file->map[p.i][p.c] == 32)
+				file->map[p.i][p.c] = 'x';
+			p.c++;
+		}
+		p.i++;
+	}
+	p.i = 0;
+	printf("%s\n",file->map[p.i]);
+	while (file->map[p.i])
+		printf("%s\n",file->map[p.i++]);
+	return (0);
+}
+
+int ft_check_file_struct(t_get_file *file)
+{
+	/*if (ft_check_fd(file) == -1)
+		return (-1);*/
+	if (ft_check_rgb(file) == -1)
+		return (-1);
+	ft_check_map(file);
+	return (0);
+}
+char **ft_set_temp_map(t_parse *parse, char *map)
+{
+	char **tmp;
+	char *temp;
+
+	parse->i = ft_get_file_size(map);
+	parse->fd = open(map, O_RDONLY, 0644);
+	tmp = malloc(sizeof(char *) * (parse->i + 1));
+	while (parse->c < parse->i)
+	{
+		temp = get_next_line(parse->fd);
+		tmp[parse->c] = ft_strtrim(temp,"\t \n");
+		free(temp);
+		parse->c++;
+	}
+	tmp[parse->c] = NULL;
+	close(parse->fd);
+	return (tmp);
+}
+
 
 void ft_read_cub(char *map, t_game *cub3d)
 {
 	char **tmp;
-	char *temp;
+	char **tmp2;
 	t_parse parse;
 	t_get_file file;
 	(void)cub3d;
 
-	parse.c = 0;
-	parse.i = ft_get_file_size(map);
-	parse.fd = open(map, O_RDONLY, 0644);
-	tmp = malloc(sizeof(char *) * (parse.i + 1));
-	while (parse.c < parse.i)
-	{
-		temp = get_next_line(parse.fd);
-		tmp[parse.c] = ft_strtrim(temp,"\t \n");
-		free(temp);
-		parse.c++;
-	}
-	tmp[parse.c] = NULL;
-	close(parse.fd);
+	tmp = ft_set_temp_map(&parse, map);
+	tmp2 = ft_set_temp_map_2(parse, map);
+	printf("%s\n",tmp2[0]);
 	init_file(&file);
-	if (ft_check_variables(tmp, &parse, &file) == -1)
+	if (ft_check_variables(tmp,tmp2, &parse, &file) == -1)
 	{
 		printf("Map Error!");
 		return ;
 	}
-	print_file(&file);
+
+	if (ft_check_file_struct(&file) == -1)
+	{
+		printf("Map Error!");
+		return ;
+	}
 }
