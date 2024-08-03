@@ -154,23 +154,24 @@ int ft_check_var_if_2(char **test, t_get_file *files)
 		return (1);
 	return (0);
 }
-char **ft_set_temp_map_2(t_parse parse, char *map)
+char **ft_set_temp_map_2(t_parse *parse, char *map)
 {
 	char **tmp;
 	char *temp;
 
-	parse.c = 0;
-	parse.i = ft_get_file_size(map);
-	parse.fd = open(map, O_RDONLY, 0644);
-	tmp = malloc(sizeof(char *) * (parse.i + 1));
-	while (parse.c < parse.i)
+	parse->c = 0;
+	parse->i = ft_get_file_size(map);
+	parse->fd = open(map, O_RDONLY, 0644);
+	tmp = malloc(sizeof(char *) * (parse->i + 1));
+	while (parse->c < parse->i)
 	{
-		temp = get_next_line(parse.fd);
+		temp = get_next_line(parse->fd);
+		tmp[parse->c] = ft_strtrim(temp, "\n");
 		free(temp);
-		parse.c++;
+		parse->c++;
 	}
-	tmp[parse.c] = NULL;
-	close(parse.fd);
+	tmp[parse->c] = NULL;
+	close(parse->fd);
 	return (tmp);
 }
 
@@ -253,6 +254,55 @@ int ft_check_rgb(t_get_file *file)
 	return (0);
 }
 
+int ft_check_map_3(t_get_file *file)
+{
+	t_parse p;
+
+	p.i = 0;
+	while (file->map[p.i])
+	{
+		p.c = 0;
+		while (file->map[p.i][p.c])
+		{
+			if (file->map[p.i][p.c] == '_' && ++p.c)
+				continue;
+			if (p.i > 0 && file->map[p.i][p.c] == '0'
+			&& file->map[p.i - 1][p.c] == '_')
+				return (-1);
+			p.c++;
+		}
+		p.i++;
+	}
+	return (0);
+}
+
+int ft_check_map_2(t_get_file *file)
+{
+	t_parse p;
+
+	p.i = 0;
+	while (file->map[p.i])
+	{
+		p.c = 0;
+		while (file->map[p.i][p.c])
+		{
+			if (file->map[p.i][p.c] == '_' && ++p.c)
+				continue;
+			if (p.i == 0 && file->map[p.i][p.c] != '1')
+				return (-1);
+			if ((p.c == 0 && file->map[p.i][p.c] != '1')
+			|| (p.c == (int)ft_strlen(file->map[p.i]) - 1
+			&& file->map[p.i][p.c] != '1'))
+				return (-1);
+			p.c++;
+		}
+		p.i++;
+	}
+	if (ft_check_map_3(file) == -1)
+		printf("ERROR 2");
+	return (0);
+}
+
 int ft_check_map(t_get_file *file)
 {
 	t_parse p;
@@ -261,18 +311,17 @@ int ft_check_map(t_get_file *file)
 	p.c = 0;
 	while (file->map[p.i])
 	{
+		p.c = 0;
 		while (file->map[p.i][p.c])
 		{
 			if (file->map[p.i][p.c] == 32)
-				file->map[p.i][p.c] = 'x';
+				file->map[p.i][p.c] = '_';
 			p.c++;
 		}
 		p.i++;
 	}
-	p.i = 0;
-	printf("%s\n",file->map[p.i]);
-	while (file->map[p.i])
-		printf("%s\n",file->map[p.i++]);
+	if (ft_check_map_2(file) == -1)
+		printf("Error!");
 	return (0);
 }
 
@@ -315,8 +364,7 @@ void ft_read_cub(char *map, t_game *cub3d)
 	(void)cub3d;
 
 	tmp = ft_set_temp_map(&parse, map);
-	tmp2 = ft_set_temp_map_2(parse, map);
-	printf("%s\n",tmp2[0]);
+	tmp2 = ft_set_temp_map_2(&parse, map);
 	init_file(&file);
 	if (ft_check_variables(tmp,tmp2, &parse, &file) == -1)
 	{
