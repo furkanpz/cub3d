@@ -106,6 +106,12 @@ struct s_draw_hlpr
 	int		index;
 };
 
+typedef struct s_point
+{
+	int			x;
+	int			y;
+}				t_point;
+
 typedef struct s_get_file{
 	char *no;
 	char *so;
@@ -114,6 +120,12 @@ typedef struct s_get_file{
 	char **f;
 	char **c;
 	char **map;
+	size_t	lmapsize;
+	size_t mapy;
+	size_t pcount;
+	t_point p;
+	t_point pmap;
+	int fferror;
 	int count;
 
 }				t_get_file;
@@ -167,7 +179,7 @@ int		key_release_handler(int keycode, t_game *cub3d);
 void	player_movement(t_game *cub3d, t_vec2 dir);
 void	player_camera(t_game *cub3d, t_bool rotate_dir);
 
-//----------------------- PARSE -----------------
+//----------------------- PARSE --------------------
 
 typedef struct s_parse{
 
@@ -179,11 +191,15 @@ typedef struct s_parse{
 
 }			t_parse;
 
-void ft_read_cub(char *map, t_game *cub3d);
-int ft_check_variables(char **file, char **file2, t_parse *parse, t_get_file *files);
-int ft_get_file_size(char *map);
-void get_map_size(t_game *cub3d, char *map);
-void ft_error_msg(char *av, int type);
-
-
+void 	ft_read_cub(char *map, t_game *cub3d);
+int		ft_check_variables(char **file, char **file2, t_parse *parse, t_get_file *files);
+int		ft_get_file_size(char *map);
+void	get_map_size(t_game *cub3d, char *map);
+void	ft_error_msg(char *av, int type);
+void	ft_check_var_init(t_parse *parse, t_get_file *files);
+void	ft_check_variables_if(char **test, t_get_file *files);
+int		ft_check_map(t_get_file *file);
+int		ft_check_file_struct(t_get_file *file);
+void	flood_fill(t_get_file *file);
+void	freepchar(char **str);
 #endif

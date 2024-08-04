@@ -4,6 +4,8 @@ CC = gcc
 
 SRC = src
 
+PRS = parsing
+
 OBJ = obj
 
 SRCS = $(SRC)/cub3d.c \
@@ -15,7 +17,9 @@ SRCS = $(SRC)/cub3d.c \
 	$(SRC)/raycast.c \
 	$(SRC)/texture.c \
 	$(SRC)/debug.c \
-	parsing_test/main.c
+	$(PRS)/check_file_variables.c $(PRS)/check_file_variables_2.c \
+	$(PRS)/check_map.c $(PRS)/check_variables.c $(PRS)/parse_utils.c \
+	$(PRS)/read_cub_file.c $(PRS)/flood_fill.c 
 
 MLX = lib/mlx/libmlx.a
 
