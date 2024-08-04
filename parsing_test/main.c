@@ -253,6 +253,24 @@ int ft_check_rgb(t_get_file *file)
 		return (-1);
 	return (0);
 }
+int ft_check_map_4(t_get_file *file)
+{
+	t_parse p;
+
+	p.i = 0;
+	while (file->map[p.i])
+	{
+		p.c = 0;
+		while (file->map[p.i][p.c])
+		{
+			if (!ft_strchr("10NSEW_",file->map[p.i][p.c]))
+				return (-1);
+			p.c++;
+		}
+		p.i++;
+	}
+	return (0);
+}
 
 int ft_check_map_3(t_get_file *file)
 {
@@ -266,13 +284,15 @@ int ft_check_map_3(t_get_file *file)
 		{
 			if (file->map[p.i][p.c] == '_' && ++p.c)
 				continue;
-			if (p.i > 0 && file->map[p.i][p.c] == '0'
-			&& file->map[p.i - 1][p.c] == '_')
+			if (p.i > 0 && ft_strchr("0NSEW",file->map[p.i][p.c])
+			&& (file->map[p.i - 1][p.c] == '_' || !ft_strchr("10NSEW",file->map[p.i - 1][p.c])))
 				return (-1);
 			p.c++;
 		}
 		p.i++;
 	}
+	if (ft_check_map_4(file) == -1)
+		printf("ERROR3\n");
 	return (0);
 }
 
