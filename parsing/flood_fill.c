@@ -1,4 +1,4 @@
-#include "../inc/cub3d.h"
+#include "cub3d.h"
 
 void	f_fill(t_get_file *file, char **map, size_t row, size_t col)
 {
@@ -44,15 +44,28 @@ char **temp_map_f(t_get_file *file)
 {
     char **temp_map;
     int i;
+	size_t c;
 
-    temp_map = malloc(sizeof(char *) * (file->mapy + 1));
+	c = 0;
+    temp_map = malloc(sizeof(char *) * (file->mapy + 2));
     if (!temp_map)
         return (NULL);
-    i = -1;
-    while (file->map[++i])
-        temp_map[i] = ft_strdup(file->map[i]);
-    temp_map[i] = NULL;
+    i = 0;
+	temp_map[0] = malloc(sizeof(char) * (file->lmapsize + 1));
+	while (c < file->lmapsize)
+		temp_map[0][c++] = '_';
+	temp_map[0][c] = '\0';
+	c = 1;
+    while (file->map[i])
+        temp_map[c++] = ft_strdup(file->map[i++]);
+    temp_map[c] = NULL;
     return (temp_map);
+}
+
+void p_map(char **temp_map)
+{
+	for (int x= 0; temp_map[x];x++)
+		printf("%s\n",temp_map[x]);
 }
 
 void	flood_fill(t_get_file *file)

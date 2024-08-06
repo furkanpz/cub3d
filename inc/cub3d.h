@@ -14,6 +14,7 @@
 # define TILE_SIZE		40
 # define PLAYER_RAD		6
 # define PLAYER_SIZE	0.2
+# define MAX_RAY_LENGHT	100
 
 typedef union u_vec2i
 {
@@ -33,10 +34,10 @@ typedef struct s_tile_map
 
 typedef struct s_player
 {
-	t_vec2	pos;
-	t_vec2	dir;
 	float	move_speed;
 	float	camera_speed;
+	t_vec2	pos;
+	t_vec2	dir;
 }	t_player;
 
 typedef enum e_face
@@ -49,8 +50,8 @@ typedef enum e_face
 
 typedef struct s_hit
 {
-	t_vec2	pos;
 	t_face	face;
+	t_vec2	pos;
 }	t_hit;
 
 typedef struct s_input
@@ -64,15 +65,38 @@ typedef struct s_input
 	t_bool	esc_key;
 }	t_input;
 
-typedef struct s_logger
+
+typedef struct s_point
 {
-	FILE	*frame_log;
-}	t_logger;
+	int			x;
+	int			y;
+	char		d;
+}				t_point;
+
+typedef struct s_get_file{
+	char *no;
+	char *so;
+	char *we;
+	char *ea;
+	char **f;
+	char **c;
+	char **map;
+	char *map_file;
+	size_t	lmapsize;
+	size_t mapy;
+	size_t pcount;
+	t_point p;
+	t_point pmap;
+	int fferror;
+	int count;
+
+}				t_get_file;
 
 typedef struct s_game
 {
-	t_mlx		mlx;
-	t_mlx		debug;
+	t_hit		collisions[WIDTH];
+	float		coll_deg[WIDTH];
+	double		delta_time;
 	t_tile_map	map;
 	t_player	player;
 	t_input		inputs;
@@ -80,11 +104,13 @@ typedef struct s_game
 	t_img		tex_west;
 	t_img		tex_south;
 	t_img		tex_east;
-	t_hit		*collisions;
-	t_logger	log;
-	float		*coll_deg;
-	double		delta_time;
-	int			coll_count;
+	t_color		floor;
+	t_color		ceil;
+	t_mlx		mlx;
+	t_mlx		debug;
+	t_bool		fl_cntrl;
+	t_bool		cl_cntrl;
+	t_get_file	file;
 }	t_game;
 
 typedef struct s_raycast
@@ -106,29 +132,10 @@ struct s_draw_hlpr
 	int		index;
 };
 
-typedef struct s_point
-{
-	int			x;
-	int			y;
-}				t_point;
-
-typedef struct s_get_file{
-	char *no;
-	char *so;
-	char *we;
-	char *ea;
-	char **f;
-	char **c;
-	char **map;
-	size_t	lmapsize;
-	size_t mapy;
-	size_t pcount;
-	t_point p;
-	t_point pmap;
-	int fferror;
-	int count;
-
-}				t_get_file;
+static const t_vec2	g_south = (t_vec2){.x = 0, .y = 1};
+static const t_vec2	g_north = (t_vec2){.x = 0, .y = -1};
+static const t_vec2	g_east = (t_vec2){.x = -1, .y = 0};
+static const t_vec2	g_west = (t_vec2){.x = 1, .y = 0};
 
 //---------------------- Debug --------------------------
 
@@ -148,7 +155,6 @@ void	raycast(t_game *cub3d, t_vec2 start, t_vec2 dir, t_hit *out);
 
 void	init_game(t_game *cub3d);
 void	init_map(t_game *cub3d);
-void	init_tex(t_game *cub3d, t_img *tex, char *path);
 
 //---------------------- Texture --------------------------
 
@@ -179,6 +185,10 @@ int		key_release_handler(int keycode, t_game *cub3d);
 void	player_movement(t_game *cub3d, t_vec2 dir);
 void	player_camera(t_game *cub3d, t_bool rotate_dir);
 
+//----------------------- Map -----------------
+int	take_all_things_from_doc(t_game *cub3d);
+int	control_names_and_values(char *sub, t_game *cub3d);
+
 //----------------------- PARSE --------------------
 
 typedef struct s_parse{
@@ -191,7 +201,8 @@ typedef struct s_parse{
 
 }			t_parse;
 
-void 	ft_read_cub(char *map, t_game *cub3d);
+
+int		ft_read_cub(char *map, t_game *cub3d);
 int		ft_check_variables(char **file, char **file2, t_parse *parse, t_get_file *files);
 int		ft_get_file_size(char *map);
 void	get_map_size(t_game *cub3d, char *map);
@@ -202,4 +213,6 @@ int		ft_check_map(t_get_file *file);
 int		ft_check_file_struct(t_get_file *file);
 void	flood_fill(t_get_file *file);
 void	freepchar(char **str);
+
+
 #endif

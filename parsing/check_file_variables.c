@@ -72,6 +72,11 @@ int ft_check_variables(char **file, char **file2, t_parse *parse, t_get_file *fi
 		if (files->count == 6)
 			break;
 		test = ft_split(file[parse->c], ' ');
+		if (!test[0])
+		{
+			parse->c++;
+			continue;
+		}
 		if (ft_check_var_if(test) || ft_check_var_if_2(test, files))
 			break ;
 		while (test[parse->j])

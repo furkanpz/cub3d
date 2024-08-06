@@ -18,6 +18,7 @@ char **ft_set_temp_map(t_parse *parse, char *map)
 	parse->i = ft_get_file_size(map);
 	parse->fd = open(map, O_RDONLY, 0644);
 	parse->k = 0;
+	parse->c = 0;
 	tmp = malloc(sizeof(char *) * (parse->i + 1));
 	while (parse->c < parse->i)
 	{
@@ -55,14 +56,31 @@ char **ft_set_temp_map_2(t_parse *parse, char *map)
 	return (tmp);
 }
 
+void ft_map_join(t_get_file *file)
+{
+	int i;
+	char *ret;
+	char *temp;
 
-void ft_read_cub(char *map, t_game *cub3d)
+	i = 0;
+	ret = ft_strdup("");
+	while (file->map[i])
+	{
+		temp = ret;
+		ret = ft_strjoin(ret,file->map[i]);
+		free(temp);
+		i++;
+	}
+	freepchar(file->map);
+	file->map_file = ret;
+}
+
+int ft_read_cub(char *map, t_game *cub3d)
 {
 	char **tmp;
 	char **tmp2;
 	t_parse parse;
 	t_get_file file;
-	(void)cub3d;
 
 	tmp = ft_set_temp_map(&parse, map);
 	file.lmapsize = parse.k + 1;
@@ -70,13 +88,10 @@ void ft_read_cub(char *map, t_game *cub3d)
 	tmp2 = ft_set_temp_map_2(&parse, map);
 	init_file(&file);
 	if (ft_check_variables(tmp,tmp2, &parse, &file) == -1)
-	{
-		printf("Map Error!");
-		return ;
-	}
+		return (-1);
 	if (ft_check_file_struct(&file) == -1)
-	{
-		printf("Map Error!");
-		return ;
-	}
+		return (-1);
+	ft_map_join(&file);
+	cub3d->file = file;
+	return (0);
 }

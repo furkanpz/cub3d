@@ -139,6 +139,8 @@ void set_p(t_get_file *file, t_parse *p)
 	file->pcount += 1;
 	file->p.x = p->c;
 	file->p.y = p->i;
+	file->p.d = file->map[file->p.y][file->p.x];
+	file->map[file->p.y][file->p.x] = '0';
 }
 
 int ft_check_map(t_get_file *file)

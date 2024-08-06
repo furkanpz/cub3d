@@ -1,0 +1,14 @@
+F C VİRGÜLLER
+MAP KÖŞELERİ
+ÖRNEK MAP: 
+ 1
+101
+ 1
+
+NO KISMI KISA OLDUĞUNDA ÇALIŞIYOR 
+ÖRNEK N VEYA UZUN OLDUĞUNDA ÖRNEK NOO
+
+HATA BİLMEM KAÇ ÖRNEK;
+EA ./wolf
+tex/./textures_xpm/naturalbricks_hd_verydark.xpm
+DÜZELTİLMELİ

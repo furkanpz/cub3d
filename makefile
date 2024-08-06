@@ -30,7 +30,7 @@ GNL = lib/get_next_line/get_next_line.a
 INCLUDES = -I./lib/mlx -I./lib/get_next_line \
 	-I./lib/libft -I./inc
 
-CFLAGS = -O3 -Wall -Wextra -Werror $(DEBUG)
+CFLAGS = -g -Wall -Wextra -Werror $(DEBUG)
 
 MLX_FLAGS_LINUX = $(GNL) $(LIBFT) $(MLX) -Bdynamic -L/usr/lib/X11 \
 	-lXext -lX11 -lm
@@ -51,11 +51,11 @@ OBJS = $(SRCS:$(SRC)/%.c=$(OBJ)/%.o)
 all: $(NAME)
 
 $(OBJ)/%.o: $(SRC)/%.c
-	@$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $?
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $?
 
-$(NAME): $(OBJS) $(MLX) $(LIBFT) $(GNL)
+$(NAME): $(MLX) $(LIBFT) $(GNL) $(OBJS)
 	@echo "Compiling CUB3D..."
-	@$(CC) $(CFLAGS) $(INCLUDES) -o $@ $? $(MLX_FLAGS)
+	$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@ $(MLX_FLAGS)
 
 $(MLX):
 	@if [ ! -d "./lib/mlx" ]; then\
@@ -102,4 +102,4 @@ debug:
 run: $(NAME)
 	./$(NAME)
 
-.PHONY: all re fclean clean run
+.PHONY: all re fclean clean run debug

@@ -6,7 +6,7 @@
 /*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 12:36:34 by bgrhnzcn          #+#    #+#             */
-/*   Updated: 2024/07/19 17:45:05 by fuyar            ###   ########.fr       */
+/*   Updated: 2024/08/06 16:08:22 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,45 +14,30 @@
 
 static void	init_player(t_game *cub3d)
 {
-	cub3d->player.pos.x = 4.5;
-	cub3d->player.pos.y = 5.5;
-	cub3d->player.dir.x = 0;
-	cub3d->player.dir.y = 1;
+	cub3d->player.pos.x = (float)cub3d->file.p.x + 0.5;
+	cub3d->player.pos.y = (float)cub3d->file.p.y - 0.5;
+	if (cub3d->file.p.d == 'S')
+		cub3d->player.dir = g_south;
+	if (cub3d->file.p.d == 'N')
+		cub3d->player.dir = g_north;
+	if (cub3d->file.p.d == 'E')
+		cub3d->player.dir = g_east;
+	if (cub3d->file.p.d == 'W')
+		cub3d->player.dir = g_west;	
 	cub3d->player.move_speed = 10;
 	cub3d->player.camera_speed = 100;
 }
 
 void	init_map(t_game *cub3d)
 {
-	cub3d->map.size.x = 20;
-	cub3d->map.size.y = 20;
-	cub3d->map.tiles = malloc(sizeof (char)
-			* cub3d->map.size.x * cub3d->map.size.y);
+	cub3d->map.size.x = cub3d->file.lmapsize;
+	cub3d->map.size.y = cub3d->file.mapy;
+	cub3d->map.tiles = cub3d->file.map_file;
 	if (cub3d->map.tiles == NULL)
 		exit(EXIT_FAILURE);
-	ft_memcpy(cub3d->map.tiles, &(char [400]){'1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1',
-										     '1', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1',
-										     '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1',
-										     '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1',
-										     '1', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1',
-										     '1', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1',
-										     '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1',
-										     '1', '1', '0', '0', '0', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1',
-										     '1', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1',
-											 '1', '0', '0', '0', '0', '0', '0', '0', '1', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1',
-											 '1', '0', '0', '0', '0', '0', '0', '0', '1', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '1',
-											 '1', '0', '1', '1', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1',
-											 '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1',
-											 '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1',
-											 '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1',
-											 '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1',
-											 '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1',
-											 '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1',
-											 '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1',
-										     '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1',}, 400);
 }
 
-void	init_tex(t_game *cub3d, t_img *tex, char *path)
+static void	init_tex(t_game *cub3d, t_img *tex, char *path)
 {
 	tex->img = mlx_xpm_file_to_image(cub3d->mlx.mlx, path,
 			&tex->size_line, &tex->line_count);
@@ -86,10 +71,16 @@ void	init_game(t_game *cub3d)
 {
 	cub3d->inputs = (t_input){0};
 	cub3d->mlx.mlx = mlx_init();
-	init_tex(cub3d, &cub3d->tex_south, "textures/Icon6.xpm");
-	init_tex(cub3d, &cub3d->tex_west, "textures/Icon16.xpm");
-	init_tex(cub3d, &cub3d->tex_north, "textures/epic.xpm");
-	init_tex(cub3d, &cub3d->tex_east, "textures/Icon10.xpm");
+	cub3d->floor = (t_color){.red = ft_atoi(cub3d->file.f[0]),
+	.green = ft_atoi(cub3d->file.f[1]),
+	.blue = ft_atoi(cub3d->file.f[2])};
+	cub3d->ceil = (t_color){.red = ft_atoi(cub3d->file.c[0]),
+	.green = ft_atoi(cub3d->file.c[1]),
+	.blue = ft_atoi(cub3d->file.c[2])};
+	init_tex(cub3d, &cub3d->tex_south, cub3d->file.so);
+	init_tex(cub3d, &cub3d->tex_west, cub3d->file.we);
+	init_tex(cub3d, &cub3d->tex_north, cub3d->file.no);
+	init_tex(cub3d, &cub3d->tex_east, cub3d->file.ea);
 	mirror_tex(&cub3d->tex_north);
 	mirror_tex(&cub3d->tex_east);
 	init_win(cub3d);

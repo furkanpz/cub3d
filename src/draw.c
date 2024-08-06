@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrhnzcn <bgrhnzcn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: faata <faata@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 12:27:56 by bgrhnzcn          #+#    #+#             */
-/*   Updated: 2024/07/08 00:28:14 by bgrhnzcn         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:35:09 by faata            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	draw_background(t_game *cub3d)
 		while (j >= 0 && j < HEIGHT)
 		{
 			if (j <= HEIGHT / 2)
-				ft_put_pixel(&cub3d->mlx.img, i, j, g_blue);
+				ft_put_pixel(&cub3d->mlx.img, i, j, cub3d->ceil);
 			else
-				ft_put_pixel(&cub3d->mlx.img, i, j, g_gray);
+				ft_put_pixel(&cub3d->mlx.img, i, j, cub3d->floor);
 			j++;
 		}
 		i++;
@@ -92,8 +92,13 @@ void	draw_walls(t_game *cub3d)
 	int		i;
 
 	i = 0;
-	while (i < cub3d->coll_count)
+	while (i < HEIGHT)
 	{
+		if (ft_vec2_equ(cub3d->collisions[i].pos, g_vec2_null))
+		{
+			i++;
+			continue ;
+		}
 		ray_len = ft_vec2_dist(cub3d->collisions[i].pos, cub3d->player.pos);
 		line_height = HEIGHT
 			/ (ray_len * cos(ft_deg_to_rad(cub3d->coll_deg[i])));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrhnzcn <bgrhnzcn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:23:37 by bgrhnzcn          #+#    #+#             */
-/*   Updated: 2024/07/08 00:25:53 by bgrhnzcn         ###   ########.fr       */
+/*   Updated: 2024/08/06 16:13:19 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	mirror_tex(t_img *tex)
 			ft_swap_int((int *)(&tex->data[j + (i * tex->size_line)].value),
 				(int *)(&tex->data[j + ((tex->size_line - i - 1)
 						* tex->size_line)].value));
-			printf("i: %d, j: %d\n", i, j);
 			i++;
 		}
 		j++;
