@@ -1,13 +1,21 @@
 #include "../inc/cub3d.h"
 
+int ft_strncmp_2(const char *s1, const char *s2)
+{
+	if (!ft_strncmp(s1, s2, ft_strlen(s1))
+	&& !ft_strncmp(s1, s2, ft_strlen(s2)))
+		return (0);
+	return (1);
+}
+
 void ft_check_variables_if2(char **test, t_get_file *files)
 {
-	if ((!ft_strncmp("NO", test[0], ft_strlen(test[0])) && files->no == NULL)
-	|| (!ft_strncmp("SO", test[0], ft_strlen(test[0])) && files->so == NULL)
-	|| (!ft_strncmp("WE", test[0], ft_strlen(test[0])) && files->we == NULL)
-	|| (!ft_strncmp("EA", test[0], ft_strlen(test[0])) && files->ea == NULL)
-	|| (!ft_strncmp("F", test[0], ft_strlen(test[0])) && files->f == NULL)
-	|| (!ft_strncmp("C", test[0], ft_strlen(test[0])) && files->c == NULL)
+	if ((!ft_strncmp_2("NO", test[0]) && files->no == NULL)
+	|| (!ft_strncmp_2("SO", test[0]) && files->so == NULL)
+	|| (!ft_strncmp_2("WE", test[0]) && files->we == NULL)
+	|| (!ft_strncmp_2("EA", test[0]) && files->ea == NULL)
+	|| (!ft_strncmp_2("F", test[0]) && files->f == NULL)
+	|| (!ft_strncmp_2("C", test[0]) && files->c == NULL)
 	)
 		ft_check_variables_if(test,files);
 }
@@ -35,28 +43,31 @@ int ft_check_var_if(char **test)
 	if ((test[0] && (ft_strchr(test[0], '1') || ft_strchr(test[0], '0')))
 		|| (test[1] && 
 		(
-			ft_strncmp("NO",test[0], 2) != 0
-			&& ft_strncmp("SO",test[0], 2) != 0
-			&& ft_strncmp("WE",test[0], 2) != 0
-			&& ft_strncmp("EA",test[0], 2) != 0
-			&& ft_strncmp("C",test[0], 1) != 0
-			&& ft_strncmp("F",test[0], 1) != 0
+			ft_strncmp_2("NO",test[0]) != 0
+			&& ft_strncmp_2("SO",test[0]) != 0
+			&& ft_strncmp_2("WE",test[0]) != 0
+			&& ft_strncmp_2("EA",test[0]) != 0
+			&& ft_strncmp_2("C",test[0]) != 0
+			&& ft_strncmp_2("F",test[0]) != 0
 		)
 			&& (ft_strchr(test[1], '1') || ft_strchr(test[1], '0'))))
 		return (1);
 	return (0);
 }
 
+
+
+
 int ft_check_var_if_2(char **test, t_get_file *files)
 {
 	if (!test[0])
 		return (0);
-	if ((!ft_strncmp("NO", test[0], ft_strlen(test[0])) && files->no != NULL)
-	|| (!ft_strncmp("SO", test[0], ft_strlen(test[0])) && files->so != NULL)
-	|| (!ft_strncmp("WE", test[0], ft_strlen(test[0])) && files->we != NULL)
-	|| (!ft_strncmp("EA", test[0], ft_strlen(test[0])) && files->ea != NULL)
-	|| (!ft_strncmp("F", test[0], ft_strlen(test[0])) && files->f != NULL)
-	|| (!ft_strncmp("C", test[0], ft_strlen(test[0])) && files->c != NULL)
+	if ((!ft_strncmp_2("NO", test[0]) && files->no != NULL)
+	|| (!ft_strncmp_2("SO", test[0]) && files->so != NULL)
+	|| (!ft_strncmp_2("WE", test[0]) && files->we != NULL)
+	|| (!ft_strncmp_2("EA", test[0]) && files->ea != NULL)
+	|| (!ft_strncmp_2("F", test[0]) && files->f != NULL)
+	|| (!ft_strncmp_2("C", test[0]) && files->c != NULL)
 	)
 		return (1);
 	return (0);
