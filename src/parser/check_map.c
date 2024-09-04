@@ -1,5 +1,4 @@
 #include "../inc/cub3d.h"
-#include "test.h"
 
 void get_map_size(t_game *cub3d, char *map)
 {

@@ -4,12 +4,12 @@
 
 
 
-NO 						/Users/faata/Desktop/cub3d/textures/epic.xpm
-SO							/Users/faata/Desktop/cub3d/textures/Icon2.xpm
-WE /Users/faata/Desktop/cub3d/textures/Icon6.xpm
-EA /Users/faata/Desktop/cub3d/textures/Icon10.xpm
-F 50,50,										50
-C 160,	32,	255
+NO ./textures/epic.xpm
+SO ./textures/epic.xpm
+WE ./textures/epic.xpm
+EA ./textures/Icon10.xpm
+F 50,50,50
+C 160, 32, 255
 
 1111111111111111111111111
 1000000000000000000000001

@@ -201,7 +201,7 @@ typedef struct s_parse{
 
 }			t_parse;
 
-
+char	**ft_split_2(char *s, char c);
 int		ft_read_cub(char *map, t_game *cub3d);
 int		ft_check_variables(char **file, char **file2, t_parse *parse, t_get_file *files);
 int		ft_get_file_size(char *map);
