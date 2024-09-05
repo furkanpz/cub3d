@@ -1,5 +1,26 @@
 #include "../inc/cub3d.h"
 
+int ft_check_cub(char *str)
+{
+	int i;
+	int size;
+
+	i = ft_strlen(str) - 1;
+	size = i;
+	if (i + 1 < 4)
+		return (-1);
+	while (i != (size - 4))
+	{
+		if ((i == size && str[i] != 'b')
+			|| (i == size - 1 && str[i] != 'u')
+			|| (i == size - 2 && str[i] != 'c')
+			|| (i == size - 3 && str[i] != '.'))
+			return (-1);
+		i--;
+	}
+	return (1);
+}
+
 int ft_check_fd(t_get_file *file)
 {
 	int fd;

@@ -214,5 +214,7 @@ int		ft_check_file_struct(t_get_file *file);
 void	flood_fill(t_get_file *file);
 void	freepchar(char **str);
 int		ft_strncmp_2(const char *s1, const char *s2);
+int		ft_check_cub(char *str);
+void	ft_variables_free(t_get_file *files);
 
 #endif

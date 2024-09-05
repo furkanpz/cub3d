@@ -35,6 +35,7 @@ char **ft_check_val_ret(char **file, t_parse *parse)
 		parse->j++;
 	}
 	test[parse->j] = NULL;
+	freepchar(file);
 	return (test);
 }
 
@@ -51,7 +52,10 @@ int ft_check_var_if(char **test)
 			&& ft_strncmp_2("F",test[0]) != 0
 		)
 			&& (ft_strchr(test[1], '1') || ft_strchr(test[1], '0'))))
-		return (1);
+		{
+			freepchar(test);
+			return (1);
+		}
 	return (0);
 }
 
@@ -69,8 +73,27 @@ int ft_check_var_if_2(char **test, t_get_file *files)
 	|| (!ft_strncmp_2("F", test[0]) && files->f != NULL)
 	|| (!ft_strncmp_2("C", test[0]) && files->c != NULL)
 	)
+	{
+		freepchar(test);
 		return (1);
+	}
 	return (0);
+}
+
+void ft_variables_free(t_get_file *files)
+{
+	if (files->no)
+		free(files->no);
+	if (files->so)
+		free(files->so);
+	if (files->we)
+		free(files->we);
+	if (files->ea)
+		free(files->ea);
+	if (files->f)
+		freepchar(files->f);
+	if (files->c)
+		freepchar(files->c);
 }
 
 int ft_check_variables(char **file, char **file2, t_parse *parse, t_get_file *files)
@@ -86,6 +109,7 @@ int ft_check_variables(char **file, char **file2, t_parse *parse, t_get_file *fi
 		if (!test[0])
 		{
 			parse->c++;
+			freepchar(test);
 			continue;
 		}
 		if (ft_check_var_if(test) || ft_check_var_if_2(test, files))
@@ -93,12 +117,21 @@ int ft_check_variables(char **file, char **file2, t_parse *parse, t_get_file *fi
 		while (test[parse->j])
 			parse->j++;
 		if (++parse->c && parse->j != 2)
+		{
+			freepchar(test);
 			continue;
+		}
 		ft_check_variables_if2(test,files);
 		parse->j = 0;
+		freepchar(test);
 	}
+	getchar();
+	freepchar(file);
 	if (files->count != 6)
+	{
+		freepchar(file2);
 		return (-1);
+	}
 	files->map = ft_check_val_ret(file2, parse);
 	if (!files->map)
 		return (-1);

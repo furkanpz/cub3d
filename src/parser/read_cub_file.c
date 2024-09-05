@@ -82,6 +82,8 @@ int ft_read_cub(char *map, t_game *cub3d)
 	t_parse parse;
 	t_get_file file;
 
+	if (ft_check_cub(map) == -1)
+		return (-1);
 	tmp = ft_set_temp_map(&parse, map);
 	file.lmapsize = parse.k + 1;
 	file.mapy = parse.i;

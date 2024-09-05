@@ -26,8 +26,8 @@ int	main(int argc, char **argv)
 		return (printf("hata!\n"), EXIT_FAILURE);
 	if (ft_read_cub(argv[1], &cub3d) == -1)
 	{
-		printf("Map Error!\n");
-		exit(1);
+		ft_variables_free(&cub3d.file);	
+		ft_error_msg(argv[1], 0);
 	}
 	init_game(&cub3d);
 	mlx_hook(cub3d.mlx.win.win,
