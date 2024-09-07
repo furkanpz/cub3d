@@ -92,7 +92,7 @@ int ft_read_cub(char *map, t_game *cub3d)
 	if (ft_check_variables(tmp,tmp2, &parse, &file) == -1)
 		return (-1);
 	if (ft_check_file_struct(&file) == -1)
-		return (-1);
+		return (-1);	
 	ft_map_join(&file);
 	cub3d->file = file;
 	return (0);

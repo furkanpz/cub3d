@@ -6,7 +6,7 @@
 /*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 15:53:18 by buozcan           #+#    #+#             */
-/*   Updated: 2024/08/06 17:40:25 by fuyar            ###   ########.fr       */
+/*   Updated: 2024/09/07 17:57:51 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ int	main(int argc, char **argv)
 	t_game	cub3d;
 
 	if (argc != 2)
-		return (printf("hata!\n"), EXIT_FAILURE);
+		return (printf("usage: ./cub3d <MAPPATH>"), EXIT_FAILURE);
 	if (ft_read_cub(argv[1], &cub3d) == -1)
 	{
-		ft_variables_free(&cub3d.file);	
+		if (ft_check_cub(argv[1]) != -1)
+			ft_variables_free(&cub3d.file);	
 		ft_error_msg(argv[1], 0);
 	}
 	init_game(&cub3d);

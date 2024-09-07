@@ -42,7 +42,7 @@ NAME = cub3d
 CC = gcc
 
 # Compiler Flags
-CFLAGS = -Wall -Wextra -Werror $(DEBUG)
+CFLAGS = -g -Wall -Wextra -Werror $(DEBUG)
 
 # Make Flags
 MAKEFLAGS += --no-print-directory

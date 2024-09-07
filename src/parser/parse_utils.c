@@ -26,7 +26,6 @@ void ft_error_msg(char *av, int type)
 	if (type == 0)
 	{	
 		printf("cub3d: %s: Map Error\n", av);
-		sleep(5);
 		exit(1);
 	}
 }

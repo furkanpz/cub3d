@@ -30,7 +30,7 @@ char **ft_check_val_ret(char **file, t_parse *parse)
 	parse->j = 0;
 	while (parse->c < parse->i)
 	{
-		test[parse->j] = file[parse->c];
+		test[parse->j] = ft_strtrim(file[parse->c], "\t \n");
 		parse->c++;
 		parse->j++;
 	}
@@ -125,7 +125,6 @@ int ft_check_variables(char **file, char **file2, t_parse *parse, t_get_file *fi
 		parse->j = 0;
 		freepchar(test);
 	}
-	getchar();
 	freepchar(file);
 	if (files->count != 6)
 	{
