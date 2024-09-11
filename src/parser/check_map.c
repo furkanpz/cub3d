@@ -146,12 +146,12 @@ int ft_check_map(t_get_file *file)
 {
 	t_parse p;
 
-	p.i = 0;
+	p.i = -1;
 	file->pcount = 0;
-	while (file->map[p.i])
+	while (file->map[++p.i])
 	{
-		p.c = 0;
-		while (file->map[p.i][p.c])
+		p.c = -1;
+		while (file->map[p.i][++p.c])
 		{
 			if (ft_strlen(file->map[p.i]) < file->lmapsize)
 				file->map[p.i] = set_new_map_column(file->map[p.i], file);
@@ -161,9 +161,7 @@ int ft_check_map(t_get_file *file)
 				set_p(file, &p);
 			if (!ft_strchr("10NSEW_", file->map[p.i][p.c]))
 				return (-1);
-			p.c++;
 		}
-		p.i++;
 	}
 	file->mapy = p.i;
 	file->pmap.y = file->mapy;
