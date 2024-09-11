@@ -30,7 +30,12 @@ char **ft_check_val_ret(char **file, t_parse *parse)
 	parse->j = 0;
 	while (parse->c < parse->i)
 	{
-		test[parse->j] = ft_strtrim(file[parse->c], "\t \n");
+		if (file[parse->c][0] == '\0')
+		{
+			parse->c++;
+			continue;
+		}
+		test[parse->j] = ft_strtrim(file[parse->c], "\n");
 		parse->c++;
 		parse->j++;
 	}
@@ -82,14 +87,18 @@ int ft_check_var_if_2(char **test, t_get_file *files)
 
 void ft_variables_free(t_get_file *files)
 {
+	printf("NO\n");
 	if (files->no)
 		free(files->no);
+	printf("SO\n");
 	if (files->so)
 		free(files->so);
+	printf("WE\n");
 	if (files->we)
 		free(files->we);
 	if (files->ea)
 		free(files->ea);
+	printf("EA\n");
 	if (files->f)
 		freepchar(files->f);
 	if (files->c)

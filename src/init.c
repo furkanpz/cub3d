@@ -6,7 +6,7 @@
 /*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 12:36:34 by bgrhnzcn          #+#    #+#             */
-/*   Updated: 2024/08/06 16:08:22 by fuyar            ###   ########.fr       */
+/*   Updated: 2024/09/11 16:49:59 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	init_player(t_game *cub3d)
 {
-	cub3d->player.pos.x = (float)cub3d->file.p.x + 0.5;
-	cub3d->player.pos.y = (float)cub3d->file.p.y - 0.5;
+	cub3d->player.pos.x = (float)cub3d->file.p.x + 0.4;
+	cub3d->player.pos.y = (float)cub3d->file.p.y + 0.4;
 	if (cub3d->file.p.d == 'S')
 		cub3d->player.dir = g_south;
 	if (cub3d->file.p.d == 'N')

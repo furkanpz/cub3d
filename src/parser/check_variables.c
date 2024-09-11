@@ -21,6 +21,7 @@ int ft_check_cub(char *str)
 	return (1);
 }
 
+
 int ft_check_fd(t_get_file *file)
 {
 	int fd;
@@ -90,8 +91,8 @@ int ft_check_rgb(t_get_file *file)
 
 int ft_check_file_struct(t_get_file *file)
 {
-	/*if (ft_check_fd(file) == -1)
-		return (-1);*/
+	if (ft_check_fd(file) == -1)
+		return (-1);
 	if (ft_check_rgb(file) == -1)
 		return (-1);
 	file->pmap.x = file->lmapsize;
