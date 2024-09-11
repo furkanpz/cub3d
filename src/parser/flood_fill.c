@@ -22,13 +22,13 @@ void	f_fill(t_get_file *file, char **map, size_t row, size_t col)
 	f_fill(file, map, row, col + 1);
 }
 
-void freepchar(char **str)
+int freepchar(char **str)
 {
     size_t i;
 
     i = 0;
     if (!str)
-        return ;
+        return (1);
     while (str[i])
     {
         free(str[i]);
@@ -38,6 +38,7 @@ void freepchar(char **str)
     if (str)
         free(str);
     str = NULL;
+	return (1);
 }
 
 char **temp_map_f(t_get_file *file)

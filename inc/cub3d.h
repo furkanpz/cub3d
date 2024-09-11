@@ -207,15 +207,16 @@ int		ft_check_variables(char **file, char **file2, t_parse *parse, t_get_file *f
 int		ft_get_file_size(char *map);
 void	get_map_size(t_game *cub3d, char *map);
 void	ft_error_msg(char *av, int type);
-void	ft_check_var_init(t_parse *parse, t_get_file *files);
+void	ft_check_var_init(t_parse *parse, t_get_file *files, char ***test);
 void	ft_check_variables_if(char **test, t_get_file *files);
 int		ft_check_map(t_get_file *file);
 int		ft_check_file_struct(t_get_file *file);
 void	flood_fill(t_get_file *file);
-void	freepchar(char **str);
+int		freepchar(char **str);
 int		ft_strncmp_2(const char *s1, const char *s2);
 int		ft_check_cub(char *str);
 void	print_file(t_get_file *file);
 void	ft_variables_free(t_get_file *files);
+char	*tab_to_space(char *str);
 
 #endif

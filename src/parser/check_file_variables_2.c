@@ -40,8 +40,9 @@ void ft_check_variables_if(char **test, t_get_file *files)
 		files->count += 1;
 }
 
-void ft_check_var_init(t_parse *parse, t_get_file *files)
+void ft_check_var_init(t_parse *parse, t_get_file *files, char ***test)
 {
+	*test = NULL;
 	parse->c = 0;
 	parse->j = 0;
 	files->count = 0;

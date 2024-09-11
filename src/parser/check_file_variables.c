@@ -20,6 +20,7 @@ void ft_check_variables_if2(char **test, t_get_file *files)
 		ft_check_variables_if(test,files);
 }
 
+
 char **ft_check_val_ret(char **file, t_parse *parse)
 {
 	char **test;
@@ -35,7 +36,7 @@ char **ft_check_val_ret(char **file, t_parse *parse)
 			parse->c++;
 			continue;
 		}
-		test[parse->j] = ft_strtrim(file[parse->c], "\n");
+		test[parse->j] = tab_to_space(file[parse->c]);
 		parse->c++;
 		parse->j++;
 	}
@@ -57,10 +58,7 @@ int ft_check_var_if(char **test)
 			&& ft_strncmp_2("F",test[0]) != 0
 		)
 			&& (ft_strchr(test[1], '1') || ft_strchr(test[1], '0'))))
-		{
-			freepchar(test);
-			return (1);
-		}
+			return (freepchar(test));
 	return (0);
 }
 
@@ -78,10 +76,7 @@ int ft_check_var_if_2(char **test, t_get_file *files)
 	|| (!ft_strncmp_2("F", test[0]) && files->f != NULL)
 	|| (!ft_strncmp_2("C", test[0]) && files->c != NULL)
 	)
-	{
-		freepchar(test);
-		return (1);
-	}
+		return (freepchar(test));
 	return (0);
 }
 
@@ -109,37 +104,25 @@ int ft_check_variables(char **file, char **file2, t_parse *parse, t_get_file *fi
 {
 	char **test;
 
-	ft_check_var_init(parse, files);
+	ft_check_var_init(parse, files, &test);
 	while (parse->c < parse->i)
 	{
-		if (files->count == 6)
+		if (freepchar(test) && files->count == 6)
 			break;
 		test = ft_split(file[parse->c], ' ');
-		if (!test[0])
-		{
-			parse->c++;
-			freepchar(test);
+		if (!test[0] && parse->c++)
 			continue;
-		}
 		if (ft_check_var_if(test) || ft_check_var_if_2(test, files))
 			break ;
 		while (test[parse->j])
 			parse->j++;
 		if (++parse->c && parse->j != 2)
-		{
-			freepchar(test);
 			continue;
-		}
 		ft_check_variables_if2(test,files);
 		parse->j = 0;
-		freepchar(test);
 	}
-	freepchar(file);
-	if (files->count != 6)
-	{
-		freepchar(file2);
+	if (freepchar(file) && files->count != 6 && freepchar(file2))
 		return (-1);
-	}
 	files->map = ft_check_val_ret(file2, parse);
 	if (!files->map)
 		return (-1);
