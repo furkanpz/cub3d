@@ -216,7 +216,11 @@ int		freepchar(char **str);
 int		ft_strncmp_2(const char *s1, const char *s2);
 int		ft_check_cub(char *str);
 void	print_file(t_get_file *file);
-void	ft_variables_free(t_get_file *files);
 char	*tab_to_space(char *str);
-
+void	set_p(t_get_file *file, t_parse *p);
+void	get_map_size(t_game *cub3d, char *map);
+void	ft_check_variables_if2(char **test, t_get_file *files);
+char	**ft_check_val_ret(char **file, t_parse *parse);
+int		ft_check_var_if_2(char **test, t_get_file *files);
+int		ft_check_var_if(char **test);
 #endif

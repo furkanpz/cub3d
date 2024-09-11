@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_variables.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/11 17:53:44 by fuyar             #+#    #+#             */
+/*   Updated: 2024/09/11 17:54:44 by fuyar            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub3d.h"
 
-int ft_check_cub(char *str)
+int	ft_check_cub(char *str)
 {
-	int i;
-	int size;
+	int	i;
+	int	size;
 
 	i = ft_strlen(str) - 1;
 	size = i;
@@ -21,10 +33,9 @@ int ft_check_cub(char *str)
 	return (1);
 }
 
-
-int ft_check_fd(t_get_file *file)
+int	ft_check_fd(t_get_file *file)
 {
-	int fd;
+	int	fd;
 
 	fd = open(file->no, O_RDONLY, 0644);
 	if (fd == -1)
@@ -64,9 +75,9 @@ int	ft_atoi_cub(const char *str)
 	return (result * sign);
 }
 
-int ft_check_rgb(t_get_file *file)
+int	ft_check_rgb(t_get_file *file)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (file->c[i])
@@ -89,7 +100,7 @@ int ft_check_rgb(t_get_file *file)
 	return (0);
 }
 
-int ft_check_file_struct(t_get_file *file)
+int	ft_check_file_struct(t_get_file *file)
 {
 	if (ft_check_fd(file) == -1)
 		return (-1);
