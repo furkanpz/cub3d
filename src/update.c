@@ -55,7 +55,6 @@ int	update(void *param)
 {
 	static double	last_time = 0;
 	double			curr_time;
-	char			*frame_rate;
 	t_game			*cub3d;
 
 	cub3d = (t_game *)param;
@@ -64,16 +63,9 @@ int	update(void *param)
 	last_time = curr_time;
 	update_player(cub3d);
 	update_rays(cub3d);
-	#if DEBUG == 1
-	update_debug(cub3d);
-	#endif
 	draw_background(cub3d);
 	draw_walls(cub3d);
 	mlx_put_image_to_window(cub3d->mlx.mlx, cub3d->mlx.win.win,
 		cub3d->mlx.img.img, 0, 0);
-	frame_rate = ft_itoa((int)(1 / cub3d->delta_time));
-	mlx_string_put(cub3d->mlx.mlx, cub3d->mlx.win.win, 20, 20, g_magenta.value,
-		frame_rate);
-	free(frame_rate);
 	return (0);
 }

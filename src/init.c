@@ -84,9 +84,6 @@ void	init_game(t_game *cub3d)
 	mirror_tex(&cub3d->tex_north);
 	mirror_tex(&cub3d->tex_east);
 	init_win(cub3d);
-	#if DEBUG == 1
-	init_debug(cub3d);
-	#endif
 	init_player(cub3d);
 	init_map(cub3d);
 	mlx_put_image_to_window(cub3d->mlx.mlx, cub3d->mlx.win.win,
