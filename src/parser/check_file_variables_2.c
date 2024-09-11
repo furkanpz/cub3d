@@ -31,6 +31,7 @@ char	**ft_split_2(char *s, char c)
 	}
 	ret2[i] = NULL;
 	freepchar(ret);
+	free(s);
 	return (ret2);
 }
 

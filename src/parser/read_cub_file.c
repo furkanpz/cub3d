@@ -20,6 +20,8 @@ static void	init_file(t_get_file *file)
 	file->c = NULL;
 	file->no = NULL;
 	file->ea = NULL;
+	file->map = NULL;
+	file->map_file = NULL;
 }
 
 char	**ft_set_temp_map(t_parse *parse, char *map)
@@ -87,6 +89,24 @@ void	ft_map_join(t_get_file *file)
 	file->map_file = ret;
 }
 
+void free_file(t_get_file *file)
+{
+	if (file->no)
+		free(file->no);
+	if (file->so)
+		free(file->so);
+	if (file->we)
+		free(file->we);
+	if (file->ea)
+		free(file->ea);
+	if (file->f)
+		freepchar(file->f);
+	if (file->c)
+		freepchar(file->c);
+	if (file->map)
+		freepchar(file->map);
+}
+
 int	ft_read_cub(char *map, t_game *cub3d)
 {
 	char		**tmp;
@@ -102,9 +122,15 @@ int	ft_read_cub(char *map, t_game *cub3d)
 	tmp2 = ft_set_temp_map_2(&parse, map);
 	init_file(&file);
 	if (ft_check_variables(tmp, tmp2, &parse, &file) == -1)
+	{
+		free_file(&file);
 		return (-1);
+	}
 	if (ft_check_file_struct(&file) == -1)
+	{
+		free_file(&file);
 		return (-1);
+	}
 	ft_map_join(&file);
 	cub3d->file = file;
 	return (0);
