@@ -1,6 +1,7 @@
 {
     "files.associations": {
-        "cub3d.h": "c",
-        "bitset": "c"
-    }
+		"cub3d.h": "c",
+		"bitset": "c",
+		"cmath": "c"
+	}
 }

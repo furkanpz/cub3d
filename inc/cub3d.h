@@ -8,6 +8,8 @@
 # include "mlx.h"
 # include "get_next_line_bonus.h"
 # include "libft.h"
+# include "../src/vector/vector.h"
+# include "ft_inputs.h"
 
 # define HEIGHT			800
 # define WIDTH			800
@@ -16,15 +18,15 @@
 # define PLAYER_SIZE	0.2
 # define MAX_RAY_LENGHT	100
 
-typedef union u_vec2i
+
+typedef struct s_vector
 {
-	struct
-	{
-		int	x;
-		int	y;
-	};
-	int	data[2];
-}	t_vec2i;
+	size_t	type_size;
+	size_t	buffer_size;
+	size_t	lenght;
+	char	buffer[1];
+}	t_vector;
+
 
 typedef struct s_tile_map
 {
@@ -136,6 +138,20 @@ static const t_vec2	g_south = (t_vec2){.x = 0, .y = 1};
 static const t_vec2	g_north = (t_vec2){.x = 0, .y = -1};
 static const t_vec2	g_east = (t_vec2){.x = -1, .y = 0};
 static const t_vec2	g_west = (t_vec2){.x = 1, .y = 0};
+static const t_color	g_red = (t_color){.value = 0x00ff0000};
+static const t_color	g_green = (t_color){.value = 0x0000ff00};
+static const t_color	g_blue = (t_color){.value = 0x000000ff};
+static const t_color	g_dark_blue = (t_color){.value = 0x0000008b};
+static const t_color	g_white = (t_color){.value = 0x00ffffff};
+static const t_color	g_black = (t_color){.value = 0x00000000};
+static const t_color	g_gray = (t_color){.value = 0x00808080};
+static const t_color	g_magenta = (t_color){.value = 0x00ff00ff};
+static const t_color	g_cyan = (t_color){.value = 0x0000ffff};
+static const t_color	g_yellow = (t_color){.value = 0x00ffff00};
+static const t_vec2		g_vec2_null = (t_vec2){.x = 0, .y = 0};
+static const t_vec2		g_vec2_i = (t_vec2){.x = 1, .y = 0};
+static const t_vec2		g_vec2_j = (t_vec2){.x = 0, .y = 1};
+
 
 //---------------------- Debug --------------------------
 
@@ -209,7 +225,6 @@ void	get_map_size(t_game *cub3d, char *map);
 void	ft_error_msg(char *av, int type);
 void	ft_check_var_init(t_parse *parse, t_get_file *files, char ***test);
 void	ft_check_variables_if(char **test, t_get_file *files);
-int		ft_check_map(t_get_file *file);
 int		ft_check_file_struct(t_get_file *file);
 void	flood_fill(t_get_file *file);
 int		freepchar(char **str);
@@ -223,4 +238,7 @@ void	ft_check_variables_if2(char **test, t_get_file *files);
 char	**ft_check_val_ret(char **file, t_parse *parse);
 int		ft_check_var_if_2(char **test, t_get_file *files);
 int		ft_check_var_if(char **test);
+void 	free_file(t_get_file *file);
+int		ft_check_map(t_get_file *file);
+int		ft_exit(void *cub3d);
 #endif

@@ -3,24 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: buozcan <buozcan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 16:39:54 by buozcan           #+#    #+#             */
-/*   Updated: 2023/10/09 16:46:43 by buozcan          ###   ########.fr       */
+/*   Created: 2023/10/12 15:58:18 by fuyar             #+#    #+#             */
+/*   Updated: 2023/10/12 15:58:31 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-	size_t	i;
+	size_t	a;
+	char	*dest;
 
-	i = 0;
-	while (i < n)
+	a = 0;
+	dest = s;
+	while (a < n)
 	{
-		((char *)s)[i] = 0;
-		i++;
+		dest[a] = '\0';
+		a++;
 	}
-	return (s);
 }

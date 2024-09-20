@@ -3,58 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: buozcan <buozcan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/21 19:41:46 by buozcan           #+#    #+#             */
-/*   Updated: 2023/10/21 20:49:18 by buozcan          ###   ########.fr       */
+/*   Created: 2023/10/12 15:56:24 by fuyar             #+#    #+#             */
+/*   Updated: 2023/10/12 16:45:11 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_digitcount(int x)
+static int	intlenn(int x)
 {
-	int	count;
+	int	a;
 
-	count = 0;
+	a = 0;
+	if (x == -2147483648)
+		return (11);
 	if (x < 0)
 	{
-		count++;
+		a++;
 		x = -x;
 	}
 	while (x > 0)
 	{
 		x = x / 10;
-		count++;
+		a++;
 	}
-	return (count);
+	return (a);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*str;
-	int		i;
-	int		count;
+	char	*ret;
+	int		a;
+	int		size;
 
-	count = ft_digitcount(n);
+	size = intlenn(n);
 	if (n == 0)
 		return (ft_strdup("0"));
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
-	str = malloc(count + 1);
-	if (!str)
+	ret = malloc(size + 1);
+	if (!ret)
 		return (NULL);
 	if (n < 0)
 	{
-		str[0] = '-';
+		ret[0] = '-';
 		n = -n;
 	}
-	i = count;
-	while (n > 0 && i--)
+	a = size;
+	while (n > 0 && a--)
 	{
-		str[i] = '0' + (n % 10);
+		ret[a] = '0' + (n % 10);
 		n = n / 10;
 	}
-	str[count] = '\0';
-	return (str);
+	ret[size] = '\0';
+	return (ret);
 }
