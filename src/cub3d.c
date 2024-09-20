@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: fhosgor <fhosgor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 15:53:18 by buozcan           #+#    #+#             */
-/*   Updated: 2024/09/20 14:25:44 by fuyar            ###   ########.fr       */
+/*   Updated: 2024/09/20 14:57:25 by fhosgor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+float	ft_deg_to_rad(float deg)
+{
+	return ((deg / 180) * PI);
+}
+
+float	ft_rad_to_deg(float rad)
+{
+	return (rad * (180 / PI));
+}
 
 int	control_for_path(char **argv)
 {
@@ -18,10 +28,10 @@ int	control_for_path(char **argv)
 	return (EXIT_SUCCESS);
 }
 
-int ft_exit(void *cub3d)
+int	ft_exit(void *cub3d)
 {
 	t_game	*game;
-	
+
 	game = (t_game *)cub3d;
 	mlx_destroy_window(game->mlx.mlx, game->mlx.win.win);
 	free_file(&game->file);

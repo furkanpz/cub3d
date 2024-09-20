@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   tab_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: fhosgor <fhosgor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 17:48:13 by fuyar             #+#    #+#             */
-/*   Updated: 2024/09/11 17:49:24 by fuyar            ###   ########.fr       */
+/*   Updated: 2024/09/20 14:37:50 by fhosgor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	free_file(t_get_file *file)
+{
+	if (file->no)
+		free(file->no);
+	if (file->so)
+		free(file->so);
+	if (file->we)
+		free(file->we);
+	if (file->ea)
+		free(file->ea);
+	if (file->f)
+		freepchar(file->f);
+	if (file->c)
+		freepchar(file->c);
+	if (file->map)
+		freepchar(file->map);
+}
 
 static int	stc(char *str)
 {

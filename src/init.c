@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: fhosgor <fhosgor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 12:36:34 by bgrhnzcn          #+#    #+#             */
-/*   Updated: 2024/09/11 16:49:59 by fuyar            ###   ########.fr       */
+/*   Updated: 2024/09/20 14:36:12 by fhosgor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	init_player(t_game *cub3d)
 	if (cub3d->file.p.d == 'E')
 		cub3d->player.dir = g_east;
 	if (cub3d->file.p.d == 'W')
-		cub3d->player.dir = g_west;	
+		cub3d->player.dir = g_west;
 	cub3d->player.move_speed = 10;
 	cub3d->player.camera_speed = 100;
 }
@@ -71,11 +71,11 @@ void	init_game(t_game *cub3d)
 {
 	cub3d->inputs = (t_input){0};
 	cub3d->mlx.mlx = mlx_init();
-	cub3d->floor = (t_color){.red = ft_atoi(cub3d->file.f[0]),
-	.green = ft_atoi(cub3d->file.f[1]),
+	cub3d->floor = (t_color){.red = ft_atoi(cub3d->file.f[0]), \
+	.green = ft_atoi(cub3d->file.f[1]), \
 	.blue = ft_atoi(cub3d->file.f[2])};
-	cub3d->ceil = (t_color){.red = ft_atoi(cub3d->file.c[0]),
-	.green = ft_atoi(cub3d->file.c[1]),
+	cub3d->ceil = (t_color){.red = ft_atoi(cub3d->file.c[0]), \
+	.green = ft_atoi(cub3d->file.c[1]), \
 	.blue = ft_atoi(cub3d->file.c[2])};
 	init_tex(cub3d, &cub3d->tex_south, cub3d->file.so);
 	init_tex(cub3d, &cub3d->tex_west, cub3d->file.we);

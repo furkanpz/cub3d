@@ -217,6 +217,13 @@ typedef struct s_parse{
 
 }			t_parse;
 
+float	ft_deg_to_rad(float deg);
+float	ft_rad_to_deg(float rad);
+void	ft_put_pixel(t_img *img, int x, int y, t_color color);
+void	ft_fill_img(t_win *win, t_img *img, t_color color);
+void	ft_swap_int(int *a, int *b);
+float	ft_lerp(float val, float min, float max);
+float	ft_normalize(float val, float min, float max);
 char	**ft_split_2(char *s, char c);
 int		ft_read_cub(char *map, t_game *cub3d);
 int		ft_check_variables(char **file, char **file2, t_parse *parse, t_get_file *files);

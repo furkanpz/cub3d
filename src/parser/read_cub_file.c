@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_cub_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: fhosgor <fhosgor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 17:49:58 by fuyar             #+#    #+#             */
-/*   Updated: 2024/09/20 13:34:34 by fuyar            ###   ########.fr       */
+/*   Updated: 2024/09/20 14:37:34 by fhosgor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,24 +88,6 @@ void	ft_map_join(t_get_file *file)
 	freepchar(file->map);
 	file->map = NULL;
 	file->map_file = ret;
-}
-
-void free_file(t_get_file *file)
-{
-	if (file->no)
-		free(file->no);
-	if (file->so)
-		free(file->so);
-	if (file->we)
-		free(file->we);
-	if (file->ea)
-		free(file->ea);
-	if (file->f)
-		freepchar(file->f);
-	if (file->c)
-		freepchar(file->c);
-	if (file->map)
-		freepchar(file->map);
 }
 
 int	ft_read_cub(char *map, t_game *cub3d)
