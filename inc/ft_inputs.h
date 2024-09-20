@@ -1,24 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_inputs.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/20 17:20:51 by fuyar             #+#    #+#             */
+/*   Updated: 2024/09/20 17:21:39 by fuyar            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_INPUTS_H
 # define FT_INPUTS_H
 
-#  define ESC_KEY 53
-#  define X_KEY 7
-#  define Z_KEY 6
-#  define O_KEY 31
-#  define Q_KEY 12
-#  define W_KEY 13
-#  define E_KEY 14
-#  define R_KEY 15
-#  define A_KEY 0
-#  define S_KEY 1
-#  define D_KEY 2
-#  define F_KEY 3
-#  define P_KEY 35
-#  define RIGHT_KEY 124
-#  define LEFT_KEY 123
-#  define UP_KEY 126
-#  define DOWN_KEY 125
-
+# define ESC_KEY 53
+# define X_KEY 7
+# define Z_KEY 6
+# define O_KEY 31
+# define Q_KEY 12
+# define W_KEY 13
+# define E_KEY 14
+# define R_KEY 15
+# define A_KEY 0
+# define S_KEY 1
+# define D_KEY 2
+# define F_KEY 3
+# define P_KEY 35
+# define RIGHT_KEY 124
+# define LEFT_KEY 123
+# define UP_KEY 126
+# define DOWN_KEY 125
 
 typedef enum e_mlx_event
 {
@@ -31,4 +42,4 @@ typedef enum e_mlx_event
 	Destroy = 17
 }	t_mlx_event;
 
-# endif
+#endif

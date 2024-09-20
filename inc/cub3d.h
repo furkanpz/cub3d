@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/20 17:38:50 by fuyar             #+#    #+#             */
+/*   Updated: 2024/09/20 17:46:24 by fuyar            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -8,7 +20,7 @@
 # include "mlx.h"
 # include "get_next_line_bonus.h"
 # include "libft.h"
-# include "../src/vector/vector.h"
+# include "vector.h"
 # include "ft_inputs.h"
 
 # define HEIGHT			800
@@ -18,7 +30,6 @@
 # define PLAYER_SIZE	0.2
 # define MAX_RAY_LENGHT	100
 
-
 typedef struct s_vector
 {
 	size_t	type_size;
@@ -26,7 +37,6 @@ typedef struct s_vector
 	size_t	lenght;
 	char	buffer[1];
 }	t_vector;
-
 
 typedef struct s_tile_map
 {
@@ -67,7 +77,6 @@ typedef struct s_input
 	t_bool	esc_key;
 }	t_input;
 
-
 typedef struct s_point
 {
 	int			x;
@@ -75,22 +84,23 @@ typedef struct s_point
 	char		d;
 }				t_point;
 
-typedef struct s_get_file{
-	char *no;
-	char *so;
-	char *we;
-	char *ea;
-	char **f;
-	char **c;
-	char **map;
-	char *map_file;
+typedef struct s_get_file
+{
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	char	**f;
+	char	**c;
+	char	**map;
+	char	*map_file;
 	size_t	lmapsize;
-	size_t mapy;
-	size_t pcount;
-	t_point p;
-	t_point pmap;
-	int fferror;
-	int count;
+	size_t	mapy;
+	size_t	pcount;
+	t_point	p;
+	t_point	pmap;
+	int		fferror;
+	int		count;
 
 }				t_get_file;
 
@@ -125,19 +135,6 @@ typedef struct s_raycast
 	t_hit	hit;
 }	t_raycast;
 
-struct s_draw_hlpr
-{
-	t_game	*cub3d;
-	t_img	*tex;
-	float	line_height;
-	float	tex_x;
-	int		index;
-};
-
-static const t_vec2	g_south = (t_vec2){.x = 0, .y = 1};
-static const t_vec2	g_north = (t_vec2){.x = 0, .y = -1};
-static const t_vec2	g_east = (t_vec2){.x = -1, .y = 0};
-static const t_vec2	g_west = (t_vec2){.x = 1, .y = 0};
 static const t_color	g_red = (t_color){.value = 0x00ff0000};
 static const t_color	g_green = (t_color){.value = 0x0000ff00};
 static const t_color	g_blue = (t_color){.value = 0x000000ff};
@@ -148,10 +145,15 @@ static const t_color	g_gray = (t_color){.value = 0x00808080};
 static const t_color	g_magenta = (t_color){.value = 0x00ff00ff};
 static const t_color	g_cyan = (t_color){.value = 0x0000ffff};
 static const t_color	g_yellow = (t_color){.value = 0x00ffff00};
-static const t_vec2		g_vec2_null = (t_vec2){.x = 0, .y = 0};
-static const t_vec2		g_vec2_i = (t_vec2){.x = 1, .y = 0};
-static const t_vec2		g_vec2_j = (t_vec2){.x = 0, .y = 1};
 
+struct s_draw_hlpr
+{
+	t_game	*cub3d;
+	t_img	*tex;
+	float	line_height;
+	float	tex_x;
+	int		index;
+};
 
 //---------------------- Debug --------------------------
 
@@ -177,7 +179,7 @@ void	init_map(t_game *cub3d);
 void	rotate_index(t_img *tex);
 void	mirror_tex(t_img *tex);
 float	get_tex_y(t_img *tex, float i, float height);
-void	draw_tex_helper(int *i, float *tex_y,
+void	draw_tex_helper(int *i, float *tex_y, \
 	float *full_height, float *line_height);
 t_color	*get_tex_data(t_img *tex, float tex_x);
 
@@ -201,20 +203,15 @@ int		key_release_handler(int keycode, t_game *cub3d);
 void	player_movement(t_game *cub3d, t_vec2 dir);
 void	player_camera(t_game *cub3d, t_bool rotate_dir);
 
-//----------------------- Map -----------------
-int	take_all_things_from_doc(t_game *cub3d);
-int	control_names_and_values(char *sub, t_game *cub3d);
-
 //----------------------- PARSE --------------------
 
-typedef struct s_parse{
-
-	int i;
-	int c;
-	int k;
-	int j;
-	int fd;
-
+typedef struct s_parse
+{
+	int	i;
+	int	c;
+	int	k;
+	int	j;
+	int	fd;
 }			t_parse;
 
 float	ft_deg_to_rad(float deg);
@@ -226,7 +223,8 @@ float	ft_lerp(float val, float min, float max);
 float	ft_normalize(float val, float min, float max);
 char	**ft_split_2(char *s, char c);
 int		ft_read_cub(char *map, t_game *cub3d);
-int		ft_check_variables(char **file, char **file2, t_parse *parse, t_get_file *files);
+int		ft_check_variables(char **file, char **file2, \
+t_parse *parse, t_get_file *files);
 int		ft_get_file_size(char *map);
 void	get_map_size(t_game *cub3d, char *map);
 void	ft_error_msg(char *av, int type);
@@ -245,7 +243,7 @@ void	ft_check_variables_if2(char **test, t_get_file *files);
 char	**ft_check_val_ret(char **file, t_parse *parse);
 int		ft_check_var_if_2(char **test, t_get_file *files);
 int		ft_check_var_if(char **test);
-void 	free_file(t_get_file *file);
+void	free_file(t_get_file *file);
 int		ft_check_map(t_get_file *file);
 int		ft_exit(void *cub3d);
 #endif

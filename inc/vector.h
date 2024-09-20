@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhosgor <fhosgor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 14:30:58 by fhosgor           #+#    #+#             */
-/*   Updated: 2024/09/20 14:50:32 by fhosgor          ###   ########.fr       */
+/*   Updated: 2024/09/20 17:51:21 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,15 @@ typedef struct s_draw_line
 	float	x;
 	float	y;
 }	t_draw_line;
+
+
+static const t_vec2	g_south = (t_vec2){.x = 0, .y = 1};
+static const t_vec2	g_north = (t_vec2){.x = 0, .y = -1};
+static const t_vec2	g_east = (t_vec2){.x = -1, .y = 0};
+static const t_vec2	g_west = (t_vec2){.x = 1, .y = 0};
+static const t_vec2	g_vec2_null = (t_vec2){.x = 0, .y = 0};
+static const t_vec2	g_vec2_i = (t_vec2){.x = 1, .y = 0};
+static const t_vec2	g_vec2_j = (t_vec2){.x = 0, .y = 1};
 
 float	ft_vec2_mag(t_vec2 vec);
 t_vec2	ft_vec2_sub(t_vec2	vec1, t_vec2 vec2);

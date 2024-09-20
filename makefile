@@ -88,7 +88,6 @@ SRCS = $(SRC)/cub3d.c \
 	$(SRC)/controller.c \
 	$(SRC)/raycast.c \
 	$(SRC)/texture.c \
-	$(SRC)/debug.c \
 	$(SRC)/utils.c \
 	$(PRS)/check_file_variables.c $(PRS)/check_file_variables_2.c \
 	$(PRS)/check_map.c $(PRS)/check_variables.c $(PRS)/parse_utils.c \
@@ -223,7 +222,7 @@ MLX_COMP = awk '{ \
 	fi
 
 # MiniLibX Compilation
-$(MLX):
+$(MLX): $(MLX_DIR)
 	@printf "$(BOLD_CYAN)Compiling MiniLibX...\n"
 	@cd $(MLX_DIR) && $(MLX_COMP)
 
