@@ -6,7 +6,7 @@
 /*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 18:30:17 by fuyar             #+#    #+#             */
-/*   Updated: 2024/09/11 18:30:18 by fuyar            ###   ########.fr       */
+/*   Updated: 2024/09/21 17:35:58 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_parse *parse, t_get_file *files)
 	{
 		if (freepchar(test) && files->count == 6)
 			break ;
-		test = ft_split(file[parse->c], ' ');
+		test = ft_split_cub(file[parse->c]);
 		if (!test[0] && parse->c++)
 			continue ;
 		if (ft_check_var_if(test) || ft_check_var_if_2(test, files))

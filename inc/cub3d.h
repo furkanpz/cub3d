@@ -6,7 +6,7 @@
 /*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 17:38:50 by fuyar             #+#    #+#             */
-/*   Updated: 2024/09/21 15:50:19 by fuyar            ###   ########.fr       */
+/*   Updated: 2024/09/21 17:35:25 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,5 +245,6 @@ int		ft_check_var_if_2(char **test, t_get_file *files);
 int		ft_check_var_if(char **test);
 void	free_file(t_get_file *file);
 int		ft_check_map(t_get_file *file);
+char	**ft_split_cub(char *s);
 int		ft_exit(void *cub3d);
 #endif

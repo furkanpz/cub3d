@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tab_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhosgor <fhosgor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 17:48:13 by fuyar             #+#    #+#             */
-/*   Updated: 2024/09/20 14:37:50 by fhosgor          ###   ########.fr       */
+/*   Updated: 2024/09/21 17:51:40 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,20 @@ static void	init_int(int *i, int *j, int *c)
 	*c = 0;
 }
 
+void set_str(char *new_str, int *c, int *j)
+{
+	if (*c == 1)
+		while (*j % 4 != 0)
+			new_str[(*j)++] = ' ';
+	else if (*c == 0)
+		while (*c < 4)
+		{
+			new_str[(*j)++] = ' ';
+			*c += 1;
+		}
+	*c = 0;
+}
+
 char	*tab_to_space(char *str)
 {
 	int		i;
@@ -67,13 +81,13 @@ char	*tab_to_space(char *str)
 		return (NULL);
 	while (str[i])
 	{
-		c = 0;
 		if (str[i] == '\t')
-			while (c != 4)
-				new_str[j + c++] = ' ';
+			set_str(new_str, &c, &j);
 		else
+		{
+			c = 1;
 			new_str[j++] = str[i];
-		j += c;
+		}
 		i++;
 	}
 	new_str[j] = '\0';

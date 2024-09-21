@@ -92,7 +92,8 @@ SRCS = $(SRC)/cub3d.c \
 	$(PRS)/check_file_variables.c $(PRS)/check_file_variables_2.c \
 	$(PRS)/check_map.c $(PRS)/check_variables.c $(PRS)/parse_utils.c \
 	$(PRS)/read_cub_file.c $(PRS)/flood_fill.c $(PRS)/tab_parser.c \
-	$(PRS)/check_map_2.c $(SRC)/vector/ft_vec1.c $(SRC)/vector/ft_vec2.c
+	$(PRS)/check_map_2.c $(SRC)/vector/ft_vec1.c $(SRC)/vector/ft_vec2.c \
+	$(PRS)/split.c
 
 
 # Object Directory Creation
