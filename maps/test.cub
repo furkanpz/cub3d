@@ -1,9 +1,14 @@
-NO ./textures/epic.xpm
+
+
+
 EA ./textures/epic.xpm
 WE ./textures/epic.xpm
 SO ./textures/epic.xpm
 C	  	153,204,255
 F   	164,169,20
+
+NO ./textures/epic.xpm
+
 11111111
 100000011111
 111110000001
