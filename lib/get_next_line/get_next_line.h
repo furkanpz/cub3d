@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrhnzcn <bgrhnzcn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 17:47:38 by buozcan           #+#    #+#             */
-/*   Updated: 2023/11/14 20:54:58 by bgrhnzcn         ###   ########.fr       */
+/*   Created: 2023/10/18 11:10:28 by fuyar             #+#    #+#             */
+/*   Updated: 2024/09/21 15:46:30 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include <unistd.h>
 # include <stdlib.h>
+# include <unistd.h>
+
+char	*ft_strchr_gnl(char *str, int c);
+int		ft_strlen_gnl(char *str);
+char	*ft_strjoin_gnl(char *s1, char *s2);
+char	*get_next_line(int fd);
+char	*ft_getleft(char *dst);
+char	*ft_getline(char *dst);
+char	*ft_readline(int fd, char *dst);
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 4
 # endif
-
-char	*get_next_line(int fd);
-char	*refill(int fd, char *buffer);
-char	*ft_strjoin_gnl(char *s1, char *s2);
-char	*ft_strchr_gnl(char *str, char c);
-int		ft_strlen_gnl(char *str);
-char	*get_line_str(char *buffer);
-char	*cut_line(char *buffer, int len);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_cub_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhosgor <fhosgor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 17:49:58 by fuyar             #+#    #+#             */
-/*   Updated: 2024/09/20 14:37:34 by fhosgor          ###   ########.fr       */
+/*   Updated: 2024/09/21 16:26:52 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,10 @@ char	**ft_set_temp_map_2(t_parse *parse, char *map)
 	while (parse->c < parse->i)
 	{
 		temp = get_next_line(parse->fd);
-		tmp[parse->c] = ft_strtrim(temp, "\n");
+		if (ft_strlen(temp) == 1 && temp[0] == '\n')
+			tmp[parse->c] = ft_strdup("_");
+		else
+			tmp[parse->c] = ft_strtrim(temp, "\n");
 		free(temp);
 		parse->c++;
 	}

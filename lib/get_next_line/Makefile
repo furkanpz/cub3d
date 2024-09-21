@@ -1,32 +1,29 @@
-SRCS = get_next_line.c get_next_line_utils.c
-
-BONUS_SRCS = get_next_line_bonus.c get_next_line_utils_bonus.c
-
 NAME = get_next_line.a
 
-OBJS = $(SRCS:.c=.o)
+SRC = get_next_line.c get_next_line_utils.c
 
-BONUS_OBJS = $(BONUS_SRCS:.c=.o)
-
-FLAGS = -g -Wall -Wextra -Werror
+OBJ = $(SRC:.c=.o)
 
 CC = gcc
 
+CFLAGS = -Wall -Wextra -Werror
+
+RM = rm -f
+
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	ar -rcs $(NAME) $(OBJS)
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $(OBJ)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf *.o
+	$(RM) $(OBJ)	
 
 fclean: clean
-	rm -rf $(NAME)
-	rm -rf a.out
+	$(RM) $(NAME)
 
-re:	fclean all
-
-bonus: $(OBJS) $(BONUS_OBJS)
-	ar -rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+re: fclean all
 
 .PHONY: all clean fclean re

@@ -36,7 +36,7 @@ BOLD_WHITE = \033[1;37m
 ################################################################################
 
 # Executable Name
-NAME = cub3d
+NAME = cub3D
 
 # Compiler
 CC = gcc

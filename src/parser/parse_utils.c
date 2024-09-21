@@ -6,7 +6,7 @@
 /*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 17:51:40 by fuyar             #+#    #+#             */
-/*   Updated: 2024/09/11 17:59:26 by fuyar            ###   ########.fr       */
+/*   Updated: 2024/09/21 15:50:39 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	ft_error_msg(char *av, int type)
 	if (type == 0)
 	{
 		printf("cub3d: %s: Map Error\n", av);
-		sleep(10000);
 		exit(1);
 	}
 }

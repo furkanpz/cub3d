@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhosgor <fhosgor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 12:36:34 by bgrhnzcn          #+#    #+#             */
-/*   Updated: 2024/09/20 14:36:12 by fhosgor          ###   ########.fr       */
+/*   Updated: 2024/09/21 15:53:46 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ void	init_map(t_game *cub3d)
 	cub3d->map.size.y = cub3d->file.mapy;
 	cub3d->map.tiles = cub3d->file.map_file;
 	if (cub3d->map.tiles == NULL)
+	{
+		printf("cub3d: MLX Texture Error\n");
 		exit(EXIT_FAILURE);
+	}
 }
 
 static void	init_tex(t_game *cub3d, t_img *tex, char *path)
@@ -42,7 +45,10 @@ static void	init_tex(t_game *cub3d, t_img *tex, char *path)
 	tex->img = mlx_xpm_file_to_image(cub3d->mlx.mlx, path,
 			&tex->size_line, &tex->line_count);
 	if (tex->img == NULL)
+	{
+		printf("cub3d: MLX Texture Error\n");
 		exit(EXIT_FAILURE);
+	}
 	tex->data = (t_color *)mlx_get_data_addr(tex->img, &tex->bits_per_pixel,
 			&tex->size_line, &tex->endian);
 	tex->size_line /= (tex->bits_per_pixel / 8);

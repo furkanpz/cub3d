@@ -6,7 +6,7 @@
 /*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 17:38:50 by fuyar             #+#    #+#             */
-/*   Updated: 2024/09/20 17:46:24 by fuyar            ###   ########.fr       */
+/*   Updated: 2024/09/21 15:50:19 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include "mlx.h"
-# include "get_next_line_bonus.h"
+# include "get_next_line.h"
 # include "libft.h"
 # include "vector.h"
 # include "ft_inputs.h"

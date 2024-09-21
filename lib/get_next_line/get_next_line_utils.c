@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrhnzcn <bgrhnzcn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 19:42:45 by buozcan           #+#    #+#             */
-/*   Updated: 2023/11/14 20:52:12 by bgrhnzcn         ###   ########.fr       */
+/*   Created: 2023/10/18 11:09:23 by fuyar             #+#    #+#             */
+/*   Updated: 2024/09/21 15:46:16 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_strlen_gnl(char *str)
 {
-	size_t	i;
+	int	i;
 
-	if (str == NULL)
+	if (!str)
 		return (0);
 	i = 0;
 	while (str[i])
@@ -24,40 +24,44 @@ int	ft_strlen_gnl(char *str)
 	return (i);
 }
 
-char	*ft_strchr_gnl(char *str, char c)
+char	*ft_strchr_gnl(char *str, int c)
 {
-	if (str == NULL || c == 0)
+	int	a;
+
+	if (!str)
 		return (NULL);
-	while (*str)
-		if (*str++ == c)
-			return (--str);
+	a = ft_strlen_gnl(str);
+	while (a >= 0)
+	{
+		if (*str == (char)c)
+			return (str);
+		a--;
+		str++;
+	}
 	return (NULL);
 }
 
 char	*ft_strjoin_gnl(char *s1, char *s2)
 {
-	char			*res;
-	size_t			i;
-	size_t			j;
+	int		a;
+	int		b;
+	char	*dst;
 
-	if (s1 == NULL)
+	if (!s1)
 	{
 		s1 = malloc(sizeof(char) * 1);
-		s1[0] = 0;
+		s1[0] = '\0';
 	}
-	if (s2 == NULL)
-		return (s1);
-	res = malloc(ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1);
-	if (res == NULL)
+	dst = malloc(sizeof(char) * (ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1));
+	if (!dst)
 		return (NULL);
-	j = 0;
-	i = 0;
-	while (s1[i])
-		res[j++] = s1[i++];
-	i = 0;
-	while (s2[i])
-		res[j++] = s2[i++];
-	res[j] = 0;
+	a = -1;
+	while (s1[++a])
+		dst[a] = s1[a];
+	b = -1;
+	while (s2[++b])
+		dst[a + b] = s2[b];
+	dst[a + b] = '\0';
 	free(s1);
-	return (res);
+	return (dst);
 }
