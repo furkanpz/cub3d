@@ -6,7 +6,7 @@
 /*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 18:30:17 by fuyar             #+#    #+#             */
-/*   Updated: 2024/09/21 17:55:46 by fuyar            ###   ########.fr       */
+/*   Updated: 2024/09/23 15:18:31 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ char	**ft_split_2(char *s, char c)
 	free(s);
 	return (ret2);
 }
+
+//test
 
 void	ft_check_variables_if(char **test, t_get_file *files)
 {
