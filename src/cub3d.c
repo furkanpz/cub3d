@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fhosgor <fhosgor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 15:53:18 by buozcan           #+#    #+#             */
-/*   Updated: 2024/09/20 14:57:25 by fhosgor          ###   ########.fr       */
+/*   Updated: 2024/09/25 16:47:47 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@ float	ft_deg_to_rad(float deg)
 float	ft_rad_to_deg(float rad)
 {
 	return (rad * (180 / PI));
-}
-
-int	control_for_path(char **argv)
-{
-	(void)argv;
-	return (EXIT_SUCCESS);
 }
 
 int	ft_exit(void *cub3d)
