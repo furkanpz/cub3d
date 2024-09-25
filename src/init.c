@@ -6,7 +6,7 @@
 /*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 12:36:34 by bgrhnzcn          #+#    #+#             */
-/*   Updated: 2024/09/21 15:53:46 by fuyar            ###   ########.fr       */
+/*   Updated: 2024/09/25 16:44:55 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	init_map(t_game *cub3d)
 	cub3d->map.tiles = cub3d->file.map_file;
 	if (cub3d->map.tiles == NULL)
 	{
+		free_file(&cub3d->file);
 		printf("cub3d: MLX Texture Error\n");
 		exit(EXIT_FAILURE);
 	}
@@ -47,6 +48,7 @@ static void	init_tex(t_game *cub3d, t_img *tex, char *path)
 	if (tex->img == NULL)
 	{
 		printf("cub3d: MLX Texture Error\n");
+		free_file(&cub3d->file);
 		exit(EXIT_FAILURE);
 	}
 	tex->data = (t_color *)mlx_get_data_addr(tex->img, &tex->bits_per_pixel,
@@ -58,13 +60,21 @@ static void	init_tex(t_game *cub3d, t_img *tex, char *path)
 void	init_win(t_game *cub3d)
 {
 	if (cub3d->mlx.mlx == NULL)
+	{
+		printf("cub3d: MLX Error\n");
+		free_file(&cub3d->file);
 		exit(EXIT_FAILURE);
+	}
 	cub3d->mlx.win.height = HEIGHT;
 	cub3d->mlx.win.width = WIDTH;
 	cub3d->mlx.win.win = mlx_new_window(cub3d->mlx.mlx,
 			WIDTH, HEIGHT, "cub3d - game");
 	if (cub3d->mlx.win.win == NULL)
+	{
+		printf("cub3d: MLX Win Error\n");
+		free_file(&cub3d->file);
 		exit(EXIT_FAILURE);
+	}
 	cub3d->mlx.img.img = mlx_new_image(cub3d->mlx.mlx,
 			cub3d->mlx.win.width, cub3d->mlx.win.height);
 	cub3d->mlx.img.data = (t_color *)mlx_get_data_addr(cub3d->mlx.img.img,
