@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/26 16:38:01 by fuyar             #+#    #+#             */
+/*   Updated: 2024/09/26 16:38:27 by fuyar            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-char **ft_split_cub(char *s)
+char	**ft_split_cub(char *s)
 {
-	char *temp;
-	char **tab;
+	char	*temp;
+	char	**tab;
 
 	temp = tab_to_space(s);
 	tab = ft_split(temp, ' ');

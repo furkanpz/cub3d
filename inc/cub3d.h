@@ -6,7 +6,7 @@
 /*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 17:38:50 by fuyar             #+#    #+#             */
-/*   Updated: 2024/09/25 16:42:58 by fuyar            ###   ########.fr       */
+/*   Updated: 2024/09/26 16:35:46 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,17 +154,6 @@ struct s_draw_hlpr
 	float	tex_x;
 	int		index;
 };
-
-//---------------------- Debug --------------------------
-
-void	init_debug(t_game *cub3d);
-void	draw_tile(t_img *debug, char tile, int x, int y);
-void	draw_map(t_game *cub3d);
-void	draw_rays(t_game *cub3d);
-void	draw_player(t_game *cub3d);
-void	debug_point(t_img *img, t_vec2 point);
-void	update_debug(t_game *cub3d);
-
 //---------------------- Raycast --------------------------
 
 void	raycast(t_game *cub3d, t_vec2 start, t_vec2 dir, t_hit *out);
@@ -235,7 +224,6 @@ void	flood_fill(t_get_file *file);
 int		freepchar(char **str);
 int		ft_strncmp_2(const char *s1, const char *s2);
 int		ft_check_cub(char *str);
-void	print_file(t_get_file *file);
 char	*tab_to_space(char *str);
 void	set_p(t_get_file *file, t_parse *p);
 void	get_map_size(t_game *cub3d, char *map);

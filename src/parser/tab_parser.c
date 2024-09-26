@@ -6,7 +6,7 @@
 /*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 17:48:13 by fuyar             #+#    #+#             */
-/*   Updated: 2024/09/21 17:51:40 by fuyar            ###   ########.fr       */
+/*   Updated: 2024/09/26 16:37:47 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,19 @@ static void	init_int(int *i, int *j, int *c)
 	*c = 0;
 }
 
-void set_str(char *new_str, int *c, int *j)
+void	set_str(char *new_str, int *c, int *j)
 {
 	if (*c == 1)
 		while (*j % 4 != 0)
 			new_str[(*j)++] = ' ';
 	else if (*c == 0)
+	{
 		while (*c < 4)
 		{
 			new_str[(*j)++] = ' ';
 			*c += 1;
 		}
+	}
 	*c = 0;
 }
 

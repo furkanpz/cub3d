@@ -6,7 +6,7 @@
 /*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 14:30:58 by fhosgor           #+#    #+#             */
-/*   Updated: 2024/09/20 17:51:21 by fuyar            ###   ########.fr       */
+/*   Updated: 2024/09/26 16:39:55 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ typedef struct s_draw_line
 	float	x;
 	float	y;
 }	t_draw_line;
-
 
 static const t_vec2	g_south = (t_vec2){.x = 0, .y = 1};
 static const t_vec2	g_north = (t_vec2){.x = 0, .y = -1};
