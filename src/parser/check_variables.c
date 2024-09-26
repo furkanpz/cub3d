@@ -102,7 +102,7 @@ int	ft_check_rgb(t_get_file *file)
 
 int	ft_check_file_struct(t_get_file *file)
 {
-	int x;
+	int	x;
 
 	x = 0;
 	if (ft_check_fd(file) == -1)

@@ -68,6 +68,14 @@ int	ft_check_var_if(char **test)
 				&& ft_strncmp_2("F", test[0]) != 0)
 			&& (ft_strchr(test[1], '1') || ft_strchr(test[1], '0'))))
 		return (freepchar(test));
+	if (test[0]
+		&& (ft_strncmp_2("NO", test[0]) != 0
+			&& ft_strncmp_2("SO", test[0]) != 0
+			&& ft_strncmp_2("WE", test[0]) != 0
+			&& ft_strncmp_2("EA", test[0]) != 0
+			&& ft_strncmp_2("C", test[0]) != 0
+			&& ft_strncmp_2("F", test[0]) != 0))
+		return (freepchar(test));
 	return (0);
 }
 
@@ -75,12 +83,12 @@ int	ft_check_var_if_2(char **test, t_get_file *files)
 {
 	if (!test[0])
 		return (0);
-	if ((!ft_strncmp_2("NO", test[0]) && files->no != NULL)
-		|| (!ft_strncmp_2("SO", test[0]) && files->so != NULL)
-		|| (!ft_strncmp_2("WE", test[0]) && files->we != NULL)
-		|| (!ft_strncmp_2("EA", test[0]) && files->ea != NULL)
-		|| (!ft_strncmp_2("F", test[0]) && files->f != NULL)
-		|| (!ft_strncmp_2("C", test[0]) && files->c != NULL)
+	if ((!ft_strncmp_2("NO", test[0]) && (files->no != NULL || !test[1]))
+		|| (!ft_strncmp_2("SO", test[0]) && (files->so != NULL || !test[1]))
+		|| (!ft_strncmp_2("WE", test[0]) && (files->we != NULL || !test[1]))
+		|| (!ft_strncmp_2("EA", test[0]) && (files->ea != NULL || !test[1]))
+		|| (!ft_strncmp_2("F", test[0]) && (files->f != NULL || !test[1]))
+		|| (!ft_strncmp_2("C", test[0]) && (files->c != NULL || !test[1]))
 	)
 		return (freepchar(test));
 	return (0);

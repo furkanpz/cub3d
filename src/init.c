@@ -24,8 +24,8 @@ static void	init_player(t_game *cub3d)
 		cub3d->player.dir = g_east;
 	if (cub3d->file.p.d == 'W')
 		cub3d->player.dir = g_west;
-	cub3d->player.move_speed = 0.1;
-	cub3d->player.camera_speed = 1.5;
+	cub3d->player.move_speed = 0.05;
+	cub3d->player.camera_speed = 1;
 }
 
 void	init_map(t_game *cub3d)
