@@ -6,7 +6,7 @@
 /*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 16:27:33 by fuyar             #+#    #+#             */
-/*   Updated: 2024/09/26 16:36:49 by fuyar            ###   ########.fr       */
+/*   Updated: 2024/09/26 17:27:52 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,9 @@ void	update_player(t_game *cub3d)
 
 int	update(void *param)
 {
-	static double	last_time = 0;
-	double			curr_time;
 	t_game			*cub3d;
 
 	cub3d = (t_game *)param;
-	curr_time = clock();
-	cub3d->delta_time = (double)(curr_time - last_time) / CLOCKS_PER_SEC;
-	last_time = curr_time;
 	update_player(cub3d);
 	update_rays(cub3d);
 	draw_background(cub3d);

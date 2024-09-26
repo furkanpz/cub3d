@@ -6,7 +6,7 @@
 /*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 16:27:54 by fuyar             #+#    #+#             */
-/*   Updated: 2024/09/26 16:31:33 by fuyar            ###   ########.fr       */
+/*   Updated: 2024/09/26 17:31:05 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static void	init_player(t_game *cub3d)
 		cub3d->player.dir = g_east;
 	if (cub3d->file.p.d == 'W')
 		cub3d->player.dir = g_west;
-	cub3d->player.move_speed = 10;
-	cub3d->player.camera_speed = 100;
+	cub3d->player.move_speed = 0.1;
+	cub3d->player.camera_speed = 1.5;
 }
 
 void	init_map(t_game *cub3d)
