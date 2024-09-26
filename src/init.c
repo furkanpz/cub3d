@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/09 12:36:34 by bgrhnzcn          #+#    #+#             */
-/*   Updated: 2024/09/25 16:44:55 by fuyar            ###   ########.fr       */
+/*   Created: 2024/09/26 16:27:54 by fuyar             #+#    #+#             */
+/*   Updated: 2024/09/26 16:31:33 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static void	init_tex(t_game *cub3d, t_img *tex, char *path)
 	{
 		printf("cub3d: MLX Texture Error\n");
 		free_file(&cub3d->file);
+		free(cub3d->file.map_file);
 		exit(EXIT_FAILURE);
 	}
 	tex->data = (t_color *)mlx_get_data_addr(tex->img, &tex->bits_per_pixel,
@@ -63,6 +64,7 @@ void	init_win(t_game *cub3d)
 	{
 		printf("cub3d: MLX Error\n");
 		free_file(&cub3d->file);
+		free(cub3d->file.map_file);
 		exit(EXIT_FAILURE);
 	}
 	cub3d->mlx.win.height = HEIGHT;
@@ -73,6 +75,7 @@ void	init_win(t_game *cub3d)
 	{
 		printf("cub3d: MLX Win Error\n");
 		free_file(&cub3d->file);
+		free(cub3d->file.map_file);
 		exit(EXIT_FAILURE);
 	}
 	cub3d->mlx.img.img = mlx_new_image(cub3d->mlx.mlx,

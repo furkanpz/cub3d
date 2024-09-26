@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrhnzcn <bgrhnzcn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/09 12:34:37 by bgrhnzcn          #+#    #+#             */
-/*   Updated: 2024/07/20 15:30:28 by bgrhnzcn         ###   ########.fr       */
+/*   Created: 2024/09/26 16:27:33 by fuyar             #+#    #+#             */
+/*   Updated: 2024/09/26 16:27:35 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "cub3d.h"
 
@@ -43,9 +44,6 @@ void	update_player(t_game *cub3d)
 	move_dir = ft_vec2_rot(move_dir,
 			ft_rad_to_deg(-atan2(cub3d->player.dir.x, cub3d->player.dir.y)));
 	move_dir = ft_vec2_inv(move_dir);
-	ft_draw_line(&cub3d->debug, ft_vec2_mul(cub3d->player.pos, TILE_SIZE),
-		ft_vec2_mul(ft_vec2_add(cub3d->player.pos, move_dir), TILE_SIZE),
-		g_magenta);
 	rotate_dir = inputs.left_key + inputs.right_key;
 	player_camera(cub3d, rotate_dir);
 	player_movement(cub3d, move_dir);
