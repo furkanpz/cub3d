@@ -6,7 +6,7 @@
 /*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:11:45 by fuyar             #+#    #+#             */
-/*   Updated: 2024/09/26 16:39:43 by fuyar            ###   ########.fr       */
+/*   Updated: 2024/09/26 17:10:47 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,14 @@ char	*ft_getline(char *dst)
 	ret = malloc(sizeof(char) * (i + 1));
 	if (!ret)
 		return (NULL);
-	i = 0;
-	while (dst[i] && dst[i] != '\n')
+	i = -1;
+	while (dst[++i] && dst[i] != '\n')
+		ret[i] = dst[i];
+	if (dst[i] == '\n')
 	{
 		ret[i] = dst[i];
 		i++;
 	}
-	if (dst[i] == '\n')
-		ret[i] = dst[i++];
 	ret[i] = '\0';
 	return (ret);
 }
