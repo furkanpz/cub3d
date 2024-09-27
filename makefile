@@ -42,7 +42,7 @@ NAME = cub3D
 CC = gcc
 
 # Compiler Flags
-CFLAGS = -g -Wall -Wextra -Werror $(DEBUG)
+CFLAGS = -g -Wall -Wextra -Werror
 
 # Make Flags
 MAKEFLAGS += --no-print-directory
@@ -81,7 +81,6 @@ PRS = $(SRC)/parser
 
 # Source Files
 SRCS = $(SRC)/cub3d.c \
-	$(SRC)/ft_bresenham_line.c \
 	$(SRC)/draw.c \
 	$(SRC)/update.c \
 	$(SRC)/init.c \
@@ -264,4 +263,4 @@ header:
 		printf "$(BOLD_RED)%.*s\n$(RESET)", 60, $(BAR); \
 		}'
 
-.PHONY: all re fclean clean run debug header
+.PHONY: all re fclean clean run header
