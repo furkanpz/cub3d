@@ -6,7 +6,7 @@
 /*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 17:53:44 by fuyar             #+#    #+#             */
-/*   Updated: 2024/09/26 17:21:43 by fuyar            ###   ########.fr       */
+/*   Updated: 2024/09/27 17:26:45 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int	ft_check_rgb(t_get_file *file)
 	int	i;
 
 	i = 0;
+	if (file->f == NULL || file->c == NULL)
+		return (-1);
 	while (file->c[i])
 	{
 		if (ft_atoi_cub(file->c[i]) > 255 || ft_atoi_cub(file->c[i]) < 0)
@@ -109,13 +111,13 @@ int	ft_check_file_struct(t_get_file *file)
 		return (-1);
 	if (ft_check_rgb(file) == -1)
 		return (-1);
-	file->pmap.x = file->lmapsize;
 	while (file->map[x])
 	{
 		if (ft_strlen(file->map[x]) > file->lmapsize)
 			file->lmapsize = ft_strlen(file->map[x]);
 		x++;
 	}
+	file->pmap.x = file->lmapsize;
 	if (ft_check_map(file) == -1)
 		return (-1);
 	return (0);

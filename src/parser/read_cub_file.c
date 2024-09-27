@@ -6,7 +6,7 @@
 /*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 17:49:58 by fuyar             #+#    #+#             */
-/*   Updated: 2024/09/21 16:26:52 by fuyar            ###   ########.fr       */
+/*   Updated: 2024/09/27 17:28:09 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	ft_map_join(t_get_file *file)
 	while (file->map[i])
 	{
 		temp = ret;
+		if (ft_strlen(file->map[i]) > file->lmapsize)
+			file->lmapsize = ft_strlen(file->map[i]);
 		ret = ft_strjoin(ret, file->map[i]);
 		free(temp);
 		i++;

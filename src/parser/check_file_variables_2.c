@@ -6,20 +6,21 @@
 /*   By: fuyar <fuyar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 18:30:17 by fuyar             #+#    #+#             */
-/*   Updated: 2024/09/23 15:47:25 by fuyar            ###   ########.fr       */
+/*   Updated: 2024/09/27 17:21:17 by fuyar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-char	**ft_split_2(char *s, char c)
+char	**ft_split_2_mir(char *s, char c)
 {
-	char	**ret;
-	int		i;
-	char	**ret2;
+	char **ret2;
+	char **ret;
+	int i;	
 
 	i = 0;
 	ret = ft_split(s, c);
+	free(s);
 	while (ret[i])
 		i++;
 	ret2 = malloc(sizeof(char *) * (i + 1));
@@ -31,11 +32,29 @@ char	**ft_split_2(char *s, char c)
 	}
 	ret2[i] = NULL;
 	freepchar(ret);
-	free(s);
 	return (ret2);
 }
 
-//test
+char	**ft_split_2(char *s, char c)
+{
+	int		i;
+	int		j;
+
+	j = 0;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			j++;
+		i++;
+	}
+	if (j != 2)
+	{
+		free(s);
+		return (NULL);
+	}
+	return (ft_split_2_mir(s, c));
+}
 
 void	ft_check_variables_if(char **test, t_get_file *files)
 {
