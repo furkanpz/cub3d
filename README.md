@@ -6,7 +6,7 @@
 **cub3D** is a 42 School project recreating a basic **3D game engine** using **raycasting** — the same technique behind early 90s shooters like **Wolfenstein 3D**.  
 This project introduces essential concepts in **graphics rendering**, **event-driven programming**, and **3D projection math**, all while following strict **C coding standards**.
 
-> 🎉 **Final Grade: 125/100 (with bonus)**  
+> 🎉 **Final Grade: 100/100**  
 
 ---
 
